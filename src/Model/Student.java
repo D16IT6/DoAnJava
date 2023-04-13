@@ -5,19 +5,19 @@
 package Model;
 
 import java.util.Objects;
-public class SinhVien {
+public class Student {
     private String masv;
     private String hodem;
     private String ten;
-    private date ngaysinh;
+    private String ngaysinh;
     private String quequan;
     private String sdt;
     private String email;
 
-    public SinhVien() {
+    public Student() {
     }
 
-    public SinhVien(String masv, String hodem, String ten, date ngaysinh, String quequan, String sdt, String email) {
+    public Student(String masv, String hodem, String ten, String ngaysinh, String quequan, String sdt, String email) {
         this.masv = masv;
         this.hodem = hodem;
         this.ten = ten;
@@ -31,57 +31,59 @@ public class SinhVien {
         return masv;
     }
 
-    public String getHodem() {
-        return hodem;
-    }
-
-    public String getTen() {
-        return ten;
-    }
-
-    public date getNgaysinh() {
-        return ngaysinh;
-    }
-
-    public String getQuequan() {
-        return quequan;
-    }
-
-    public String getSdt() {
-        return sdt;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
     public void setMasv(String masv) {
         this.masv = masv;
+    }
+
+    public String getHodem() {
+        return hodem;
     }
 
     public void setHodem(String hodem) {
         this.hodem = hodem;
     }
 
+    public String getTen() {
+        return ten;
+    }
+
     public void setTen(String ten) {
         this.ten = ten;
     }
 
-    public void setNgaysinh(date ngaysinh) {
+    public String getNgaysinh() {
+        return ngaysinh;
+    }
+
+    public void setNgaysinh(String ngaysinh) {
         this.ngaysinh = ngaysinh;
+    }
+
+    public String getQuequan() {
+        return quequan;
     }
 
     public void setQuequan(String quequan) {
         this.quequan = quequan;
     }
 
+    public String getSdt() {
+        return sdt;
+    }
+
     public void setSdt(String sdt) {
         this.sdt = sdt;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
+
+ 
 	
 }
 

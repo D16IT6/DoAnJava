@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAO;
+package Controller;
 
 import Model.Subject;
 import java.sql.Connection;
@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class SubjectDB implements IDataDB<Subject> {
 
@@ -37,8 +38,9 @@ public class SubjectDB implements IDataDB<Subject> {
             prs.setString(3, sub.getSotiet() + "");
             prs.setString(4, sub.getLoaimh());
             int rs = prs.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(SubjectDB.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Thêm thành công !!!");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Thêm thất bại : "+ex);
         }
     }
 
@@ -117,7 +119,7 @@ public class SubjectDB implements IDataDB<Subject> {
 
     public List<Subject> SearchByName(String name) {
         try {
-            String sql = "SELECT * FROM MONHOC WHERE TENMH=?";
+            String sql = "SELECT * FROM MONHOC WHERE TENMH like concat('%',?,'%')";
             PreparedStatement prs = conn.prepareStatement(sql);
             prs.setString(1, name);
             ResultSet rs = prs.executeQuery();
@@ -130,7 +132,7 @@ public class SubjectDB implements IDataDB<Subject> {
                 arrSubject.add(sj);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(SubjectDB.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         return arrSubject;
     }

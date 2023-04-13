@@ -1,6 +1,6 @@
 package View;
 
-import DAO.SubjectDB;
+import Controller.SubjectDB;
 import Model.Subject;
 import java.sql.SQLException;
 import java.util.List;

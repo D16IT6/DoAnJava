@@ -4,7 +4,7 @@
  */
 package View;
 
-import DAO.AccountInDB;
+import Controller.AccountInDB;
 import Model.TaiKhoan;
 import java.sql.SQLException;
 import java.util.logging.Level;
