@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,11 +19,10 @@ import javax.swing.table.DefaultTableModel;
  * @author PC
  */
 public class Quanlysinhvien extends javax.swing.JFrame {
-
+    
     ButtonGroup rb1;
     ButtonGroup rb2;
     DefaultTableModel model;
-
     public Quanlysinhvien() {
         initComponents();
         this.setLocationRelativeTo(this);
@@ -30,7 +30,7 @@ public class Quanlysinhvien extends javax.swing.JFrame {
         model = (DefaultTableModel) tbStudent.getModel();
         showData(new StudentDB().showAll());
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -94,6 +94,11 @@ public class Quanlysinhvien extends javax.swing.JFrame {
         btnAddStudent.setText("Thêm sinh viên ");
 
         btnDeleteStudent.setText("Xóa sinh viên");
+        btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteStudentActionPerformed(evt);
+            }
+        });
 
         btnSetStudent.setText("Sửa sinh viên");
 
@@ -276,6 +281,25 @@ public class Quanlysinhvien extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void btnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudentActionPerformed
+        Student st = new Student();
+        int row = tbStudent.getSelectedRow();
+        st.setMasv((String) tbStudent.getValueAt(row, 0));
+        if(st.getMasv().equalsIgnoreCase("")){
+        st.setHodem((String) tbStudent.getValueAt(row, 1));
+        st.setTen((String) tbStudent.getValueAt(row, 2));
+        st.setNgaysinh((String) tbStudent.getValueAt(row, 3));
+        st.setQuequan((String) tbStudent.getValueAt(row, 4));
+        st.setSdt((String) tbStudent.getValueAt(row, 5));
+        st.setEmail((String) tbStudent.getValueAt(row, 6));
+        txtSearch.setText(st.getMasv());
+        new StudentDB().delete(st);
+        deleteDataTable();
+        showData(new StudentDB().showAll());
+        }
+        JOptionPane.showMessageDialog(null,"Vui lon");
+    }//GEN-LAST:event_btnDeleteStudentActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -342,18 +366,18 @@ public class Quanlysinhvien extends javax.swing.JFrame {
         rb2.add(rbSearchById);
         rb2.add(rbSearchByName);
     }
-
+    
     private void deleteDataTable() {
         for (int i = tbStudent.getRowCount() - 1; i >= 0; i--) {
             model.removeRow(i);
             tbStudent.repaint();
         }
     }
-
+    
     private void showData(List<Student> list) {
         for (Student st : list) {
             var object = new Object[]{
-                st.getMasv(), st.getHodem(), st.getTen(), st.getNgaysinh(), st.getQuequan(),
+                st.getMasv().replaceAll(" ",""), st.getHodem(), st.getTen(), st.getNgaysinh(), st.getQuequan(),
                 st.getSdt(), st.getEmail()
             };
             model.addRow(object);
@@ -361,5 +385,5 @@ public class Quanlysinhvien extends javax.swing.JFrame {
             tbStudent.repaint();
         }
     }
-
+    
 }

@@ -16,9 +16,10 @@ import javax.swing.JOptionPane;
  *
  * @author PC
  */
-public class StudentDB implements IDataDB<Student>{
+public class StudentDB implements IDataDB<Student> {
+
     List<Student> listStudent;
-    Connection conn; 
+    Connection conn;
 
     public StudentDB(List<Student> listStudent, Connection conn) {
         this.listStudent = listStudent;
@@ -26,35 +27,37 @@ public class StudentDB implements IDataDB<Student>{
     }
 
     public StudentDB() {
-        listStudent=new ArrayList<>();
-        conn=ConnectSql.Connect.connectionDatabase();
+        listStudent = new ArrayList<>();
+        conn = ConnectSql.Connect.connectionDatabase();
     }
+
     @Override
     public void add(Student sv) {
         try {
-            String sql="INSERT INTO SINHVIEN VALUES (?,?,?,?,?,?,?)";
-            PreparedStatement ps=conn.prepareStatement(sql);
-            ps.setString(1,sv.getMasv());
+            String sql = "INSERT INTO SINHVIEN VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, sv.getMasv());
             ps.setString(2, sv.getHodem());
-            ps.setString(2,sv.getTen());
-            ps.setString(4,sv.getNgaysinh().toString());
-            ps.setString(5,sv.getQuequan());
-            ps.setString(6,sv.getSdt());
-            ps.setString(7,sv.getEmail());
+            ps.setString(2, sv.getTen());
+            ps.setString(4, sv.getNgaysinh().toString());
+            ps.setString(5, sv.getQuequan());
+            ps.setString(6, sv.getSdt());
+            ps.setString(7, sv.getEmail());
             ps.executeQuery();
-            JOptionPane.showMessageDialog(null,"Thêm thành công !!");
+            JOptionPane.showMessageDialog(null, "Thêm thành công !!");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Thêm thất bại "+ex);
+            JOptionPane.showMessageDialog(null, "Thêm thất bại " + ex);
         }
-        }
+    }
+
     @Override
     public List<Student> showAll() {
         try {
-            String sql="SELECT * FROM SINHVIEN";
-            PreparedStatement ps=conn.prepareStatement(sql);
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()){
-                Student sv=new Student();
+            String sql = "SELECT * FROM SINHVIEN";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Student sv = new Student();
                 sv.setMasv(rs.getString("MASV"));
                 sv.setHodem(rs.getString("HODEM"));
                 sv.setTen(rs.getString("TEN"));
@@ -72,7 +75,18 @@ public class StudentDB implements IDataDB<Student>{
 
     @Override
     public void delete(Student t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            int xd = JOptionPane.showConfirmDialog(null, "Xác nhận xóa thông tin : " + t);
+            if (xd == 0) {
+                String sql = "DELETE FROM SINHVIEN WHERE MASV=?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1,t.getMasv().replaceAll(" ",""));
+                ps.execute();
+                JOptionPane.showMessageDialog(null, "Xóa thành công !!!!!!");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Xóa thất bại " + ex);
+        }
     }
 
     @Override

@@ -83,6 +83,11 @@ public class Student {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" + "masv=" + masv + ", hodem=" + hodem + ", ten=" + ten + ", ngaysinh=" + ngaysinh + ", quequan=" + quequan + ", sdt=" + sdt + ", email=" + email + '}';
+    }
+
  
 	
 }
