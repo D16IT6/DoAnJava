@@ -5,7 +5,7 @@
 package DAO;
 
 import Model.Lop;
-import Model.SinhVien;
+import Model.Student;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
