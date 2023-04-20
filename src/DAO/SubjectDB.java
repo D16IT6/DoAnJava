@@ -117,7 +117,7 @@ public class SubjectDB implements IDataDB<Subject> {
 
     public List<Subject> SearchByName(String name) {
         try {
-            String sql = "SELECT * FROM MONHOC WHERE TENMH=?";
+            String sql = "SELECT * FROM MONHOC WHERE TENMH LIKE'%?%'";
             PreparedStatement prs = conn.prepareStatement(sql);
             prs.setString(1, name);
             ResultSet rs = prs.executeQuery();

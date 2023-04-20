@@ -181,7 +181,7 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener{
     }//GEN-LAST:event_btnQuanlydangkyActionPerformed
 
     private void btnPhanlophocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhanlophocActionPerformed
-            new Phanlophoc().setVisible(true);
+            new Quanlylophoc().setVisible(true);
             this.dispose();
     }//GEN-LAST:event_btnPhanlophocActionPerformed
 
