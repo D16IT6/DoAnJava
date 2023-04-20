@@ -4,49 +4,68 @@
  */
 package View;
 
+import Controller.StudentDB;
+import Model.Student;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author PC
  */
 public class Quanlysinhvien extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Quanlysinhvien
-     */
+    
+    ButtonGroup rb1;
+    ButtonGroup rb2;
+    DefaultTableModel model;
     public Quanlysinhvien() {
         initComponents();
         this.setLocationRelativeTo(this);
+        groupRb();
+        model = (DefaultTableModel) tbStudent.getModel();
+        showData(new StudentDB().showAll());
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbStudent = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
+        btnAddStudent = new javax.swing.JButton();
+        btnDeleteStudent = new javax.swing.JButton();
+        btnSetStudent = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jButton7 = new javax.swing.JButton();
+        rbSortByNameASC = new javax.swing.JRadioButton();
+        rbSortByNameDESC = new javax.swing.JRadioButton();
+        btnSort = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton6 = new javax.swing.JButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jTextField1 = new javax.swing.JTextField();
+        rbSearchByName = new javax.swing.JRadioButton();
+        rbSearchById = new javax.swing.JRadioButton();
+        btnSearch = new javax.swing.JButton();
+        rbSearchByAdress = new javax.swing.JRadioButton();
+        txtSearch = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("< Trở về");
+        btnExit.setText("< Trở về");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         tbStudent.setBackground(new java.awt.Color(153, 255, 255));
-        tbStudent.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh sách sinh viên"));
+        tbStudent.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tbStudent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -65,29 +84,39 @@ public class Quanlysinhvien extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbStudent);
 
-        jButton2.setText("Làm mới");
-
-        jButton3.setText("Thêm sinh viên ");
-
-        jButton4.setText("Xóa sinh viên");
-
-        jButton5.setText("Sửa sinh viên");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sắp xếp", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
-
-        jRadioButton4.setText("Sắp xếp theo tên A- Z");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnRefresh.setText("Làm mới");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                btnRefreshActionPerformed(evt);
             }
         });
 
-        jRadioButton5.setText("Sắp xếp theo tên từ Z-A");
+        btnAddStudent.setText("Thêm sinh viên ");
 
-        jButton7.setText("Sắp xếp");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteStudent.setText("Xóa sinh viên");
+        btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnDeleteStudentActionPerformed(evt);
+            }
+        });
+
+        btnSetStudent.setText("Sửa sinh viên");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sắp xếp", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+
+        rbSortByNameASC.setText("Sắp xếp theo tên A- Z");
+        rbSortByNameASC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbSortByNameASCActionPerformed(evt);
+            }
+        });
+
+        rbSortByNameDESC.setText("Sắp xếp theo tên từ Z-A");
+
+        btnSort.setText("Sắp xếp");
+        btnSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSortActionPerformed(evt);
             }
         });
 
@@ -99,12 +128,12 @@ public class Quanlysinhvien extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(jRadioButton4)
+                        .addComponent(rbSortByNameASC)
                         .addGap(52, 52, 52)
-                        .addComponent(jRadioButton5))
+                        .addComponent(rbSortByNameDESC))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(140, 140, 140)
-                        .addComponent(jButton7)))
+                        .addComponent(btnSort)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -112,21 +141,21 @@ public class Quanlysinhvien extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton5))
+                    .addComponent(rbSortByNameASC)
+                    .addComponent(rbSortByNameDESC))
                 .addGap(18, 18, 18)
-                .addComponent(jButton7))
+                .addComponent(btnSort))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
-        jRadioButton1.setText("Theo tên");
+        rbSearchByName.setText("Theo tên");
 
-        jRadioButton2.setText("Theo mã sinh viên");
+        rbSearchById.setText("Theo mã sinh viên");
 
-        jButton6.setText("Tìm kiếm");
+        btnSearch.setText("Tìm kiếm");
 
-        jRadioButton3.setText("Theo quê quán");
+        rbSearchByAdress.setText("Theo quê quán");
 
         jLabel1.setText("Nhập thông tin để tìm kiếm :");
 
@@ -137,17 +166,17 @@ public class Quanlysinhvien extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jRadioButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rbSearchByAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rbSearchById, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rbSearchByName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(91, 91, 91)
-                        .addComponent(jButton6))
+                        .addComponent(btnSearch))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
@@ -155,18 +184,18 @@ public class Quanlysinhvien extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jRadioButton1)
+                .addComponent(rbSearchByName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(rbSearchById)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
+                .addComponent(rbSearchByAdress)
                 .addGap(0, 1, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
+                .addComponent(btnSearch)
                 .addContainerGap())
         );
 
@@ -180,18 +209,18 @@ public class Quanlysinhvien extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(74, 74, 74)
-                .addComponent(jButton3)
-                .addGap(91, 91, 91)
-                .addComponent(jButton4)
-                .addGap(85, 85, 85)
-                .addComponent(jButton5)
-                .addGap(231, 231, 231))
+                .addComponent(btnRefresh)
+                .addGap(67, 67, 67)
+                .addComponent(btnAddStudent)
+                .addGap(62, 62, 62)
+                .addComponent(btnDeleteStudent)
+                .addGap(59, 59, 59)
+                .addComponent(btnSetStudent)
+                .addGap(209, 209, 209))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(btnExit)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,35 +233,72 @@ public class Quanlysinhvien extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnExit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(btnRefresh)
+                    .addComponent(btnAddStudent)
+                    .addComponent(btnDeleteStudent)
+                    .addComponent(btnSetStudent))
                 .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void rbSortByNameASCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSortByNameASCActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_rbSortByNameASCActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed
 
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_btnSortActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        try {
+            homeFrm home = new homeFrm();
+            home.dangnhap(true);
+            home.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(Quanlysinhvien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        deleteDataTable();
+        rb1.clearSelection();
+        rb2.clearSelection();
+        showData(new StudentDB().showAll());
+
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudentActionPerformed
+        Student st = new Student();
+        int row = tbStudent.getSelectedRow();
+        st.setMasv((String) tbStudent.getValueAt(row, 0));
+        if(st.getMasv().equalsIgnoreCase("")){
+        st.setHodem((String) tbStudent.getValueAt(row, 1));
+        st.setTen((String) tbStudent.getValueAt(row, 2));
+        st.setNgaysinh((String) tbStudent.getValueAt(row, 3));
+        st.setQuequan((String) tbStudent.getValueAt(row, 4));
+        st.setSdt((String) tbStudent.getValueAt(row, 5));
+        st.setEmail((String) tbStudent.getValueAt(row, 6));
+        txtSearch.setText(st.getMasv());
+        new StudentDB().delete(st);
+        deleteDataTable();
+        showData(new StudentDB().showAll());
+        }
+        JOptionPane.showMessageDialog(null,"Vui lon");
+    }//GEN-LAST:event_btnDeleteStudentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,24 +336,54 @@ public class Quanlysinhvien extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton btnAddStudent;
+    private javax.swing.JButton btnDeleteStudent;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnSetStudent;
+    private javax.swing.JButton btnSort;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JRadioButton rbSearchByAdress;
+    private javax.swing.JRadioButton rbSearchById;
+    private javax.swing.JRadioButton rbSearchByName;
+    private javax.swing.JRadioButton rbSortByNameASC;
+    private javax.swing.JRadioButton rbSortByNameDESC;
     private javax.swing.JTable tbStudent;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    private void groupRb() {
+        rb1 = new ButtonGroup();
+        rb2 = new ButtonGroup();
+        rb1.add(rbSortByNameASC);
+        rb1.add(rbSortByNameDESC);
+        rb2.add(rbSearchByAdress);
+        rb2.add(rbSearchById);
+        rb2.add(rbSearchByName);
+    }
+    
+    private void deleteDataTable() {
+        for (int i = tbStudent.getRowCount() - 1; i >= 0; i--) {
+            model.removeRow(i);
+            tbStudent.repaint();
+        }
+    }
+    
+    private void showData(List<Student> list) {
+        for (Student st : list) {
+            var object = new Object[]{
+                st.getMasv().replaceAll(" ",""), st.getHodem(), st.getTen(), st.getNgaysinh(), st.getQuequan(),
+                st.getSdt(), st.getEmail()
+            };
+            model.addRow(object);
+            model.fireTableDataChanged();
+            tbStudent.repaint();
+        }
+    }
+    
 }

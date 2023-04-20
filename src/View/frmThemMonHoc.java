@@ -4,7 +4,7 @@
  */
 package View;
 
-import DAO.SubjectDB;
+import Controller.SubjectDB;
 import Model.Subject;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -161,8 +161,7 @@ public class frmThemMonHoc extends javax.swing.JFrame {
         var Loaimh=txtLoaiMonhoc.getText();
         var Sotiet=Integer.parseInt(txtSotiet.getText()) ;
         Subject sub=new Subject(Mamh, Tenmh,Sotiet, Loaimh);
-        new SubjectDB().add(sub);
-        JOptionPane.showMessageDialog(null,"Thêm thành công !!!");
+        new SubjectDB().add(sub);    
         }
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
