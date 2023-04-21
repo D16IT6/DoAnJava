@@ -345,7 +345,7 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener{
             home.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(Quanlymonhoc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QuanlymonhocFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -363,12 +363,12 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener{
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnQuanlymonhocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanlymonhocActionPerformed
-        new Quanlymonhoc().setVisible(true);
+        new QuanlymonhocFrm().setVisible(true);
             this.dispose();
     }//GEN-LAST:event_btnQuanlymonhocActionPerformed
 
     private void btnQuanlysinhvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanlysinhvienActionPerformed
-        new Quanlysinhvien().setVisible(true);
+        new QuanlysinhvienFrm().setVisible(true);
             this.dispose();
     }//GEN-LAST:event_btnQuanlysinhvienActionPerformed
 

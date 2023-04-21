@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.Subject;
 import java.util.List;
 
 /**
@@ -15,5 +16,5 @@ public interface IDataDB <T>{
     public List<T> showAll();
     public void delete(T t);
     public void set(T t);
-    public void showByName(String x);
+    public List<T> SearchByName(String x);
 }

@@ -5,7 +5,7 @@
 package View;
 
 import Controller.AccountInDB;
-import Model.TaiKhoan;
+import Model.Acount;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,6 +81,7 @@ public class loginFrm extends javax.swing.JFrame {
         btnDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/5509636.png"))); // NOI18N
         btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.setToolTipText("");
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangNhapActionPerformed(evt);
@@ -184,7 +185,7 @@ public class loginFrm extends javax.swing.JFrame {
         var accountname=jtfMaSV.getText().toString();
         String password=new String(jpfMatKhau.getPassword());
         AccountInDB aid=new AccountInDB();
-        boolean ketqua=aid.kiemtra(accountname, password);
+        boolean ketqua=aid.CheckLogin(accountname, password);
         if(accountname.equalsIgnoreCase("")||password.equalsIgnoreCase("")){
             lbThongbao.setText("Bạn chưa nhập tên tài khoản hoặc mật khẩu");
         }else if(ketqua==true){

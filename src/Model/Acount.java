@@ -10,32 +10,33 @@ import java.util.Objects;
  *
  * @author PC
  */
-public class TaiKhoan {
-    private String matkhau;
+public class Acount {
+
+    private String password;
     private String accountname;
-    public TaiKhoan(){
+
+    public Acount() {
     }
 
-    public TaiKhoan(String matkhau, String accountname) {
-        this.matkhau = matkhau;
+    public String getPassword() {
+        return password;
+    }
+
+    public Acount(String password, String accountname) {
+        this.password = password;
         this.accountname = accountname;
     }
 
-    public String getMatkhau() {
-        return matkhau;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getAccountname() {
         return accountname;
     }
 
-    public void setMatkhau(String matkhau) {
-        this.matkhau = matkhau;
-    }
-
     public void setAccountname(String accountname) {
         this.accountname = accountname;
     }
-    
 
 }
