@@ -3,28 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
-
-import java.util.Objects;
-public class Student {
+public class Student extends Person{
     private String masv;
-    private String hodem;
-    private String ten;
-    private String ngaysinh;
-    private String quequan;
-    private String sdt;
-    private String email;
+    private String Nganh;
+    private String Lop;
 
     public Student() {
-    }
-
-    public Student(String masv, String hodem, String ten, String ngaysinh, String quequan, String sdt, String email) {
-        this.masv = masv;
-        this.hodem = hodem;
-        this.ten = ten;
-        this.ngaysinh = ngaysinh;
-        this.quequan = quequan;
-        this.sdt = sdt;
-        this.email = email;
     }
 
     public String getMasv() {
@@ -35,60 +19,28 @@ public class Student {
         this.masv = masv;
     }
 
-    public String getHodem() {
-        return hodem;
+    public Student(String masv, String Nganh, String Lop, String hodem, String ten, String ngaysinh, String Khoa, String email) {
+        super(hodem, ten, ngaysinh, Khoa, email);
+        this.masv = masv;
+        this.Nganh = Nganh;
+        this.Lop = Lop;
     }
 
-    public void setHodem(String hodem) {
-        this.hodem = hodem;
+    public String getNganh() {
+        return Nganh;
     }
 
-    public String getTen() {
-        return ten;
+    public String getLop() {
+        return Lop;
     }
 
-    public void setTen(String ten) {
-        this.ten = ten;
+    public void setNganh(String Nganh) {
+        this.Nganh = Nganh;
     }
 
-    public String getNgaysinh() {
-        return ngaysinh;
+    public void setLop(String Lop) {
+        this.Lop = Lop;
     }
-
-    public void setNgaysinh(String ngaysinh) {
-        this.ngaysinh = ngaysinh;
-    }
-
-    public String getQuequan() {
-        return quequan;
-    }
-
-    public void setQuequan(String quequan) {
-        this.quequan = quequan;
-    }
-
-    public String getSdt() {
-        return sdt;
-    }
-
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" + "masv=" + masv + ", hodem=" + hodem + ", ten=" + ten + ", ngaysinh=" + ngaysinh + ", quequan=" + quequan + ", sdt=" + sdt + ", email=" + email + '}';
-    }
-
- 
-	
+    
 }
 

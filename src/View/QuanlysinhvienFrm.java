@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class Quanlysinhvien extends javax.swing.JFrame {
+public class QuanlysinhvienFrm extends javax.swing.JFrame {
     
     ButtonGroup rb1;
     ButtonGroup rb2;
     DefaultTableModel model;
-    public Quanlysinhvien() {
+    public QuanlysinhvienFrm() {
         initComponents();
         this.setLocationRelativeTo(this);
         groupRb();
@@ -80,6 +80,11 @@ public class Quanlysinhvien extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tbStudent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tbStudentMouseExited(evt);
             }
         });
         jScrollPane1.setViewportView(tbStudent);
@@ -269,7 +274,7 @@ public class Quanlysinhvien extends javax.swing.JFrame {
             home.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(Quanlysinhvien.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QuanlysinhvienFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnExitActionPerformed
 
@@ -300,6 +305,11 @@ public class Quanlysinhvien extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Vui lon");
     }//GEN-LAST:event_btnDeleteStudentActionPerformed
 
+    private void tbStudentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbStudentMouseExited
+        tbStudent.clearSelection();
+        btnAddStudent.setEnabled(false);
+    }//GEN-LAST:event_tbStudentMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -317,20 +327,21 @@ public class Quanlysinhvien extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Quanlysinhvien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QuanlysinhvienFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Quanlysinhvien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QuanlysinhvienFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Quanlysinhvien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QuanlysinhvienFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Quanlysinhvien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QuanlysinhvienFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Quanlysinhvien().setVisible(true);
+                new QuanlysinhvienFrm().setVisible(true);
             }
         });
     }

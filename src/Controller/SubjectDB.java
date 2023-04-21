@@ -85,12 +85,6 @@ public class SubjectDB implements IDataDB<Subject> {
     public void set(Subject t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    @Override
-    public void showByName(String x) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     public List<Subject> SortByNumOfLessASC() {
         arrSubject = new SubjectDB().showAll();
         Collections.sort(arrSubject, new Comparator<Subject>() {
@@ -116,7 +110,7 @@ public class SubjectDB implements IDataDB<Subject> {
 
         return arrSubject;
     }
-
+    @Override
     public List<Subject> SearchByName(String name) {
         try {
             String sql = "SELECT * FROM MONHOC WHERE TENMH like concat('%',?,'%')";
