@@ -366,7 +366,7 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener{
     }//GEN-LAST:event_btnQuanlysinhvienActionPerformed
 
     private void btnPhanlophocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhanlophocActionPerformed
-        coban=new frm2();
+
         pnHome.removeAll();
         pnHome.add(coban);
         pack();
