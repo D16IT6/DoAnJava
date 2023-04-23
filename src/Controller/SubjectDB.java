@@ -16,6 +16,7 @@ import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import Controller.Sort.*;
 
 public class SubjectDB implements IDataDB<Subject> {
 
@@ -83,40 +84,19 @@ public class SubjectDB implements IDataDB<Subject> {
 
     @Override
     public void set(Subject t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
-
-    @Override
-    public void showByName(String x) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     public List<Subject> SortByNumOfLessASC() {
         arrSubject = new SubjectDB().showAll();
-        Collections.sort(arrSubject, new Comparator<Subject>() {
-            @Override
-            public int compare(Subject o1, Subject o2) {
-                return o1.getSotiet() - o2.getSotiet();
-            }
-
-        });
-
-        return arrSubject;
+        
+        return new SortByNumless().sortAsc(arrSubject);
     }
 
     public List<Subject> SortByNumOfLessDESC() {
         arrSubject = new SubjectDB().showAll();
-        Collections.sort(arrSubject, new Comparator<Subject>() {
-            @Override
-            public int compare(Subject o1, Subject o2) {
-                return -o1.getSotiet() + o2.getSotiet();
-            }
-
-        });
-
-        return arrSubject;
+        return new SortByNumless().sortDesc(arrSubject);
     }
-
+    @Override
     public List<Subject> SearchByName(String name) {
         try {
             String sql = "SELECT * FROM MONHOC WHERE TENMH like concat('%',?,'%')";
@@ -132,7 +112,6 @@ public class SubjectDB implements IDataDB<Subject> {
                 arrSubject.add(sj);
             }
         } catch (SQLException ex) {
-            
         }
         return arrSubject;
     }

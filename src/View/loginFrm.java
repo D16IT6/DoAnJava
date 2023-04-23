@@ -5,10 +5,11 @@
 package View;
 
 import Controller.AccountInDB;
-import Model.TaiKhoan;
+import Model.Acount;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,12 +18,15 @@ import javax.swing.JOptionPane;
  */
 public class loginFrm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form login
-     */
+    boolean checkpass = true;
+    ButtonGroup br = new ButtonGroup();
+
     public loginFrm() {
         initComponents();
         loadData();
+        goupCheckox();
+        showPass();
+        btnShowPass.requestFocus();
         this.setLocationRelativeTo(null);
     }
 
@@ -43,9 +47,12 @@ public class loginFrm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jpfMatKhau = new javax.swing.JPasswordField();
-        jtfMaSV = new javax.swing.JTextField();
+        txtPass = new javax.swing.JPasswordField();
+        txtAcountname = new javax.swing.JTextField();
         lbThongbao = new javax.swing.JLabel();
+        cbAdmin = new javax.swing.JCheckBox();
+        cbSinhvien = new javax.swing.JCheckBox();
+        btnShowPass = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ĐĂNG NHẬP");
@@ -81,6 +88,7 @@ public class loginFrm extends javax.swing.JFrame {
         btnDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/5509636.png"))); // NOI18N
         btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.setToolTipText("");
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangNhapActionPerformed(evt);
@@ -108,53 +116,106 @@ public class loginFrm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Mật khẩu");
 
+        txtPass.setText("Password");
+        txtPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtPassMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtPassMouseExited(evt);
+            }
+        });
+
+        txtAcountname.setText("AcountName");
+        txtAcountname.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtAcountnameMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtAcountnameMouseExited(evt);
+            }
+        });
+        txtAcountname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAcountnameActionPerformed(evt);
+            }
+        });
+
         lbThongbao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbThongbao.setForeground(new java.awt.Color(255, 0, 51));
         lbThongbao.setText("   ");
         lbThongbao.setToolTipText("");
 
+        cbAdmin.setBackground(new java.awt.Color(204, 204, 255));
+        cbAdmin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cbAdmin.setText("Admin");
+
+        cbSinhvien.setBackground(new java.awt.Color(204, 204, 255));
+        cbSinhvien.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cbSinhvien.setText("Sinh viên");
+
+        btnShowPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/eye.png"))); // NOI18N
+        btnShowPass.setMaximumSize(new java.awt.Dimension(20, 20));
+        btnShowPass.setMinimumSize(new java.awt.Dimension(20, 20));
+        btnShowPass.setPreferredSize(new java.awt.Dimension(20, 20));
+        btnShowPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowPassActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpfMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jtfMaSV, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbThongbao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(btnDangNhap)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExit)))
-                .addGap(0, 40, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cbAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbSinhvien, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnDangNhap)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnExit))
+                    .addComponent(lbThongbao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtAcountname)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnShowPass, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)))
+                .addGap(43, 43, 43))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtfMaSV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAcountname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpfMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnShowPass, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbAdmin)
+                    .addComponent(cbSinhvien))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbThongbao)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExit))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -181,25 +242,81 @@ public class loginFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        var accountname=jtfMaSV.getText().toString();
-        String password=new String(jpfMatKhau.getPassword());
-        AccountInDB aid=new AccountInDB();
-        boolean ketqua=aid.kiemtra(accountname, password);
-        if(accountname.equalsIgnoreCase("")||password.equalsIgnoreCase("")){
+        String accountname = txtAcountname.getText();
+        String password = new String(txtPass.getPassword());
+        AccountInDB aid = new AccountInDB();
+        boolean ketqua = aid.CheckLogin(accountname, password);
+        if (accountname.equalsIgnoreCase("AcountName") || password.equalsIgnoreCase("PassWord")) {
             lbThongbao.setText("Bạn chưa nhập tên tài khoản hoặc mật khẩu");
-        }else if(ketqua==true){
-            try {
-                homeFrm home=new homeFrm();
-                home.dangnhap(ketqua);
-                home.setVisible(ketqua);
-            } catch (SQLException ex) {
-                Logger.getLogger(loginFrm.class.getName()).log(Level.SEVERE, null, ex);
+        } else if (cbAdmin.isSelected() == false && cbSinhvien.isSelected() == false) {
+            lbThongbao.setText("Vui lòng chọn chức vụ");
+        } else if (ketqua == true) {
+            if (cbAdmin.isSelected()) {
+                try {
+                    homeFrm home = new homeFrm();
+                    home.setVisible(ketqua);
+                } catch (SQLException ex) {
+                    Logger.getLogger(loginFrm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (cbSinhvien.isSelected()) {
+                new DangKyMonHocFrm().setVisible(true);
             }
             this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null,"tên tài khoản hoặc mật khẩu chưa chính xác");
+        } else {
+            JOptionPane.showMessageDialog(null, "tên tài khoản hoặc mật khẩu chưa chính xác");
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
+
+    private void txtAcountnameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAcountnameMouseEntered
+        String accountname = txtAcountname.getText();
+        if (accountname.equalsIgnoreCase("AcountName")) {
+            txtAcountname.setText("");
+            txtAcountname.requestFocus();
+        }
+    }//GEN-LAST:event_txtAcountnameMouseEntered
+
+    private void txtPassMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassMouseEntered
+        String password = new String(txtPass.getPassword());
+        if (password.equalsIgnoreCase("PassWord")) {
+            txtPass.setText("");
+            txtPass.requestFocus();
+            if (checkpass) {
+                closePass();
+                checkpass = false;
+            }
+        }
+    }//GEN-LAST:event_txtPassMouseEntered
+
+    private void btnShowPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowPassActionPerformed
+        if (checkpass) {
+            closePass();
+            checkpass = false;
+        } else if (checkpass == false) {
+            showPass();
+            checkpass = true;
+        }
+    }//GEN-LAST:event_btnShowPassActionPerformed
+
+    private void txtAcountnameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAcountnameMouseExited
+        if (txtAcountname.getText().toString().length() == 0) {
+            txtAcountname.setText("AcountName");
+        }
+    }//GEN-LAST:event_txtAcountnameMouseExited
+
+    private void txtPassMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassMouseExited
+        String pass = new String(txtPass.getPassword());
+        if (pass.toString().length() == 0) {
+            txtPass.setText("PassWord");
+            if (checkpass == false) {
+                showPass();
+                checkpass = true;
+            }
+        }
+    }//GEN-LAST:event_txtPassMouseExited
+
+    private void txtAcountnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAcountnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAcountnameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,20 +332,42 @@ public class loginFrm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnShowPass;
+    private javax.swing.JCheckBox cbAdmin;
+    private javax.swing.JCheckBox cbSinhvien;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jpfMatKhau;
-    private javax.swing.JTextField jtfMaSV;
     private javax.swing.JLabel lbThongbao;
+    private javax.swing.JTextField txtAcountname;
+    private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
-    public boolean kiemtra(){
+    public boolean kiemtra() {
         return true;
     }
+
     private void loadData() {
-        
+
+    }
+
+    private void showPass() {
+        String pass = new String(txtPass.getPassword());
+        txtPass.setEchoChar((char) 0);
+        txtPass.setText(pass);
+    }
+
+    private void closePass() {
+        String pass = new String(txtPass.getPassword());
+        txtPass.setEchoChar((char) '*');
+        txtPass.setText(pass);
+        checkpass = false;
+    }
+
+    private void goupCheckox() {
+        br.add(cbAdmin);
+        br.add(cbSinhvien);
     }
 }
