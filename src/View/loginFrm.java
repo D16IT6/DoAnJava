@@ -9,6 +9,7 @@ import Model.Acount;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,12 +18,11 @@ import javax.swing.JOptionPane;
  */
 public class loginFrm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form login
-     */
+    ButtonGroup br=new ButtonGroup();
     public loginFrm() {
         initComponents();
         loadData();
+        goupCheckox();
         this.setLocationRelativeTo(null);
     }
 
@@ -46,6 +46,8 @@ public class loginFrm extends javax.swing.JFrame {
         jpfMatKhau = new javax.swing.JPasswordField();
         jtfMaSV = new javax.swing.JTextField();
         lbThongbao = new javax.swing.JLabel();
+        cbAdmin = new javax.swing.JCheckBox();
+        cbSinhvien = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ĐĂNG NHẬP");
@@ -114,34 +116,44 @@ public class loginFrm extends javax.swing.JFrame {
         lbThongbao.setText("   ");
         lbThongbao.setToolTipText("");
 
+        cbAdmin.setBackground(new java.awt.Color(204, 204, 255));
+        cbAdmin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cbAdmin.setText("Admin");
+
+        cbSinhvien.setBackground(new java.awt.Color(204, 204, 255));
+        cbSinhvien.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cbSinhvien.setText("Sinh viên");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpfMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jtfMaSV, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbThongbao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(btnDangNhap)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExit)))
-                .addGap(0, 40, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cbAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbSinhvien, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(btnDangNhap)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnExit))
+                        .addComponent(lbThongbao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jpfMatKhau, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                        .addComponent(jtfMaSV, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addGap(0, 36, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtfMaSV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,13 +161,17 @@ public class loginFrm extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpfMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbAdmin)
+                    .addComponent(cbSinhvien))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbThongbao)
-                .addGap(24, 24, 24)
+                .addGap(4, 4, 4)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExit))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,14 +204,18 @@ public class loginFrm extends javax.swing.JFrame {
         boolean ketqua=aid.CheckLogin(accountname, password);
         if(accountname.equalsIgnoreCase("")||password.equalsIgnoreCase("")){
             lbThongbao.setText("Bạn chưa nhập tên tài khoản hoặc mật khẩu");
+        }else if(cbAdmin.isSelected()==false&&cbSinhvien.isSelected()==false){
+            lbThongbao.setText("Vui lòng chọn chức vụ");
         }else if(ketqua==true){
+            if(cbAdmin.isSelected()){
             try {
                 homeFrm home=new homeFrm();
-                home.dangnhap(ketqua);
                 home.setVisible(ketqua);
             } catch (SQLException ex) {
                 Logger.getLogger(loginFrm.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }}else if(cbSinhvien.isSelected()){
+                new DangKyMonHocFrm().setVisible(true);
+        }
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(null,"tên tài khoản hoặc mật khẩu chưa chính xác");
@@ -216,6 +236,8 @@ public class loginFrm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JButton btnExit;
+    private javax.swing.JCheckBox cbAdmin;
+    private javax.swing.JCheckBox cbSinhvien;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -231,5 +253,10 @@ public class loginFrm extends javax.swing.JFrame {
     }
     private void loadData() {
         
+    }
+
+    private void goupCheckox() {
+        br.add(cbAdmin);
+        br.add(cbSinhvien);
     }
 }
