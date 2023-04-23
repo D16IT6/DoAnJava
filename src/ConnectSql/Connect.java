@@ -29,7 +29,7 @@ public class Connect {
     public static void main(String[] args) {
         Connection conn=null;
         try {
-            String dbURL = "jdbc:sqlserver://192.168.43.118:1433;databaseName=QLSANPHAM;encrypt=False;";
+            String dbURL = "jdbc:sqlserver://localhost;databaseName=QUANLYTRUONGHOC";
             String user = "sa";
             String pass = "123456";
             conn = DriverManager.getConnection(dbURL, user, pass);

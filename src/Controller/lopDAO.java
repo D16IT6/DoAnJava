@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAO;
+package Controller;
 
 import Model.Lop;
 import Model.Student;
@@ -49,10 +49,10 @@ public class lopDAO {
             ResultSet rs = prs.executeQuery();
             while (rs.next()) {
                 Lop lp =new Lop();
-                lp.setMaLop(rs.getString("MALOP"));
+                lp.setMaLop(rs.getString("MALOP").replaceAll(" ", ""));
                 lp.setTenLop(rs.getString("TenLop"));
-                lp.setMaNganh(rs.getString("MANGANH"));
-                lp.setMaGV(rs.getString("MAGV"));
+                lp.setMaNganh(rs.getString("MANGANH").replaceAll(" ", ""));
+                lp.setMaGV(rs.getString("MAGV").replaceAll(" ", ""));
                 lp.setSoLuongSV(rs.getInt("SOLUONGSV"));
                 lp.setNgayBD(rs.getString("NGAYBD"));
                 lp.setNgayKT(rs.getString("NGAYKT"));

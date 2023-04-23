@@ -119,11 +119,7 @@ public class SubjectDB implements IDataDB<Subject> {
 
     public List<Subject> SearchByName(String name) {
         try {
-<<<<<<< HEAD:src/DAO/SubjectDB.java
-            String sql = "SELECT * FROM MONHOC WHERE TENMH LIKE'%?%'";
-=======
             String sql = "SELECT * FROM MONHOC WHERE TENMH like concat('%',?,'%')";
->>>>>>> 2c294b5321a8ea108cc2f48d4197500bb82eb081:src/Controller/SubjectDB.java
             PreparedStatement prs = conn.prepareStatement(sql);
             prs.setString(1, name);
             ResultSet rs = prs.executeQuery();
