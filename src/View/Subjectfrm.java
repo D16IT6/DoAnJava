@@ -6,25 +6,26 @@ package View;
 import Controller.SubjectDB;
 import Model.Subject;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-public class test extends javax.swing.JPanel {
-
-     private DefaultTableModel table = null;
+import Controller.Sort.SortByNumless;
+/**
+ *
+ * @author PC
+ */
+public class Subjectfrm extends javax.swing.JPanel {
+ private DefaultTableModel table = null;
     private ButtonGroup bd = null;
-    public test() {
-        try {
-            initComponents();
-            groupradio();
-            table = (DefaultTableModel) tableData.getModel();
-            ShowTable();
-        } catch (SQLException ex) {
-            Logger.getLogger(QuanlymonhocFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public Subjectfrm() {
+        initComponents();
+        groupradio();
+        table = (DefaultTableModel) tableData.getModel();
+        ShowTable(new SubjectDB().showAll());
     }
 
     /**
@@ -36,7 +37,6 @@ public class test extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         panelALL = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         txtNameSubjectSearch = new javax.swing.JTextField();
@@ -82,9 +82,19 @@ public class test extends javax.swing.JPanel {
 
         rbSearchSubjectByName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rbSearchSubjectByName.setText("Theo tên");
+        rbSearchSubjectByName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbSearchSubjectByNameActionPerformed(evt);
+            }
+        });
 
         rbSearchSubjectByNumOfLes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rbSearchSubjectByNumOfLes.setText("Theo số tiết");
+        rbSearchSubjectByNumOfLes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbSearchSubjectByNumOfLesActionPerformed(evt);
+            }
+        });
 
         btnSearchSubject.setBackground(new java.awt.Color(51, 51, 51));
         btnSearchSubject.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -125,18 +135,20 @@ public class test extends javax.swing.JPanel {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNameSubjectSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rbSearchSubjectByName))
                 .addGap(10, 10, 10)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNumOfLesSubjectMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNumOfLesSubjectMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbSearchSubjectByNumOfLes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(rbSearchSubjectByNumOfLes))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(txtNumOfLesSubjectMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(txtNumOfLesSubjectMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11)
                 .addComponent(btnSearchSubject)
                 .addGap(10, 10, 10))
         );
@@ -248,7 +260,7 @@ public class test extends javax.swing.JPanel {
                 .addComponent(jScrollPane1)
                 .addGap(10, 10, 10))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(328, 328, 328)
+                .addGap(346, 346, 346)
                 .addComponent(btnReset)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,14 +272,15 @@ public class test extends javax.swing.JPanel {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReset))
+                .addComponent(btnReset)
+                .addGap(0, 0, 0))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(175, 175, 175)
                     .addComponent(btnDeleteSubject1)
-                    .addContainerGap(69, Short.MAX_VALUE)))
+                    .addContainerGap(109, Short.MAX_VALUE)))
         );
 
         jPanel3.setBackground(new java.awt.Color(235, 253, 255));
@@ -314,7 +327,7 @@ public class test extends javax.swing.JPanel {
         jLabel4.setText("Tên môn học");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setText("Loại môn học");
+        jLabel5.setText("Ngành");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Số tiết học");
@@ -380,7 +393,8 @@ public class test extends javax.swing.JPanel {
         panelALLLayout.setHorizontalGroup(
             panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panelALLLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelALLLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -390,15 +404,16 @@ public class test extends javax.swing.JPanel {
         panelALLLayout.setVerticalGroup(
             panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelALLLayout.createSequentialGroup()
-                .addGroup(panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(5, 5, 5)
+                .addGroup(panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelALLLayout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -414,46 +429,49 @@ public class test extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 594, Short.MAX_VALUE)
+            .addGap(0, 643, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(panelALL, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelALL, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rbSearchSubjectByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSearchSubjectByNameActionPerformed
+        txtNumOfLesSubjectMax.setText("");
+        txtNumOfLesSubjectMin.setText("");
+    }//GEN-LAST:event_rbSearchSubjectByNameActionPerformed
+
+    private void rbSearchSubjectByNumOfLesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSearchSubjectByNumOfLesActionPerformed
+        txtNameSubjectSearch.setText("");
+    }//GEN-LAST:event_rbSearchSubjectByNumOfLesActionPerformed
 
     private void btnSearchSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSubjectActionPerformed
         if (rbSearchSubjectByName.isSelected() == true) {
             var textInput = txtNameSubjectSearch.getText();
             List<Subject> list = new SubjectDB().SearchByName(textInput);
             deleteDataTable();
-            for (Subject sub : list) {
-                showInfomation(sub);
-            }
+            ShowTable(list);
         } else if (rbSearchSubjectByNumOfLes.isSelected() == true) {
             var min = txtNumOfLesSubjectMin.getText();
             var max = txtNumOfLesSubjectMax.getText();
             List<Subject> list = new SubjectDB().SearchByNumLess(min, max);
             deleteDataTable();
-            for (Subject sub : list) {
-                showInfomation(sub);
-            }
+            ShowTable(list);
         }
     }//GEN-LAST:event_btnSearchSubjectActionPerformed
 
     private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed
-        deleteDataTable();
+
         if (rbSortSubjectNumOfLesASC.isSelected() == true) {
-            List<Subject> list = new SubjectDB().SortByNumOfLessASC();
-            for (Subject sub : list) {
-                showInfomation(sub);
-            }
+            List<Subject> list = new SortByNumless().sortAsc(getDataTbale());
+            deleteDataTable();
+            ShowTable(list);
         } else if (rbSortSubjectNumOfLesDesc.isSelected()) {
-            List<Subject> list = new SubjectDB().SortByNumOfLessDESC();
-            for (Subject sub : list) {
-                showInfomation(sub);
-            }
+            List<Subject> list = new SortByNumless().sortDesc(getDataTbale());
+            deleteDataTable();
+            ShowTable(list);
         }
     }//GEN-LAST:event_btnSortActionPerformed
 
@@ -475,11 +493,13 @@ public class test extends javax.swing.JPanel {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         deleteDataTable();
-        try {
-            ShowTable();
-        } catch (SQLException ex) {
-            Logger.getLogger(QuanlymonhocFrm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        bd.clearSelection();
+        ShowTable(new SubjectDB().showAll());
+
+        SetTextNull();
+        txtNameSubjectSearch.setText("");
+        txtNumOfLesSubjectMax.setText("");
+        txtNumOfLesSubjectMin.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnDeleteSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSubjectActionPerformed
@@ -495,15 +515,16 @@ public class test extends javax.swing.JPanel {
             }
             tableData.repaint();//cap nhat lai hien thi
         }
+        SetTextNull();
     }//GEN-LAST:event_btnDeleteSubjectActionPerformed
 
     private void btnEditSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSubjectActionPerformed
-        if(checkText()==false){
+        if (checkText() == false) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin hoặc chọn thông tin cần sửa từ bảng");
-        }else{
-            for(int i=0;i<tableData.getRowCount();i++){
-                if(txtMamh.getText().equalsIgnoreCase(tableData.getValueAt(i,0).toString())==false){
-                    JOptionPane.showMessageDialog(null,"Môn học muốn sửa không tồn tại");
+        } else {
+            for (int i = 0; i < tableData.getRowCount(); i++) {
+                if (txtMamh.getText().equalsIgnoreCase(tableData.getValueAt(i, 0).toString()) == false) {
+                    JOptionPane.showMessageDialog(null, "Môn học muốn sửa không tồn tại");
                     SetTextNull();
                     return;
                 }
@@ -512,23 +533,21 @@ public class test extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditSubjectActionPerformed
 
     private void btnAddNewSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewSubjectActionPerformed
-        try {
-            if (checkText()==false) {
-                JOptionPane.showMessageDialog(null, "Thông tin không được để trống !!!!!!");
-            } else {
-                var Mamh = txtMamh.getText();
-                var Tenmh = txtTenmh.getText();
-                var Loaimh = txtLoaiMonhoc.getText();
-                var Sotiet = Integer.parseInt(txtSotiet.getText());
-                Subject sub = new Subject(Mamh, Tenmh, Sotiet, Loaimh);
-                new SubjectDB().add(sub);
-            }
 
-            deleteDataTable();
-            ShowTable();
-
-        } catch (SQLException ex) {
+        if (checkText() == false) {
+            JOptionPane.showMessageDialog(null, "Thông tin không được để trống !!!!!!");
+        } else {
+            var Mamh = txtMamh.getText();
+            var Tenmh = txtTenmh.getText();
+            var Loaimh = txtLoaiMonhoc.getText();
+            var Sotiet = Integer.parseInt(txtSotiet.getText());
+            Subject sub = new Subject(Mamh, Tenmh, Sotiet, Loaimh);
+            new SubjectDB().add(sub);
         }
+
+        deleteDataTable();
+        ShowTable(new SubjectDB().showAll());
+
         SetTextNull();
     }//GEN-LAST:event_btnAddNewSubjectActionPerformed
 
@@ -541,7 +560,6 @@ public class test extends javax.swing.JPanel {
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearchSubject;
     private javax.swing.JButton btnSort;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -567,7 +585,7 @@ public class test extends javax.swing.JPanel {
     private javax.swing.JTextField txtSotiet;
     private javax.swing.JTextField txtTenmh;
     // End of variables declaration//GEN-END:variables
-    public void showInfomation(Subject sub) {
+ public void showInfomation(Subject sub) {
         var row = new Object[]{
             sub.getMamh(), sub.getTenmh(), sub.getLoaimh(), sub.getSotiet()
         };
@@ -575,8 +593,7 @@ public class test extends javax.swing.JPanel {
         table.fireTableDataChanged();
     }
 
-    public void ShowTable() throws SQLException {
-        List<Subject> ds = new SubjectDB().showAll();
+    public void ShowTable(List<Subject> ds) {
         for (Subject sub : ds) {
             showInfomation(sub);
         }
@@ -605,12 +622,21 @@ public class test extends javax.swing.JPanel {
     }
 
     private boolean checkText() {
-        if (txtMamh.getText().equalsIgnoreCase("")
+        return !(txtMamh.getText().equalsIgnoreCase("")
                 || txtTenmh.getText().equalsIgnoreCase("")
                 || txtSotiet.getText().equalsIgnoreCase("")
-                || txtLoaiMonhoc.getText().equalsIgnoreCase("")) {
-            return false;
+                || txtLoaiMonhoc.getText().equalsIgnoreCase(""));
+    }
+    private List<Subject> getDataTbale() {
+        List<Subject> arr = new ArrayList<>();
+        for (int i = 0; i < tableData.getRowCount(); i++) {
+            Subject sb = new Subject();
+            sb.setMamh(tableData.getValueAt(i, 0).toString());
+            sb.setTenmh(tableData.getValueAt(i, 1).toString());
+            sb.setLoaimh(tableData.getValueAt(i, 2).toString());
+            sb.setSotiet(Integer.parseInt(tableData.getValueAt(i, 3) + ""));
+            arr.add(sb);
         }
-        return true;
+        return arr;
     }
 }
