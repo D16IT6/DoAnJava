@@ -71,20 +71,40 @@ public class SubjectDB implements IDataDB<Subject> {
     public void delete(Subject sub) {
         try {
             String sql = "DELETE FROM MONHOC WHERE MAMH=? AND TENMH=? AND SOTIET=? AND LOAIMH=?";
+            int check=JOptionPane.showConfirmDialog(null,"bạn có muốn xóa "+sub);
+            if(check==1){
+                return;
+            }
             PreparedStatement prs = conn.prepareStatement(sql);
             prs.setString(1, sub.getMamh());
             prs.setString(2, sub.getTenmh());
             prs.setString(3, sub.getSotiet() + "");
             prs.setString(4, sub.getLoaimh());
             int res = prs.executeUpdate();
+            if(res==1){
+                JOptionPane.showMessageDialog(null,"Xóa thành công" +sub);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(SubjectDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void set(Subject t) {
-        
+    public void set(Subject sub) {
+        try {
+            String sql = "UPDATE MONHOC SET TENMH=? ,SOTIET=?, LOAIMH=? WHERE MAMH=? ";
+            PreparedStatement prs = conn.prepareStatement(sql);
+            prs.setString(4, sub.getMamh());
+            prs.setString(1, sub.getTenmh());
+            prs.setString(2, sub.getSotiet() + "");
+            prs.setString(3, sub.getLoaimh());
+            int res = prs.executeUpdate();
+            if(res==1){
+                JOptionPane.showMessageDialog(null,"Sửa thành công" +sub);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SubjectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public List<Subject> SortByNumOfLessASC() {
         arrSubject = new SubjectDB().showAll();

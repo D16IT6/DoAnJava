@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View;
+
 import Controller.SubjectDB;
 import Model.Subject;
 import java.sql.SQLException;
@@ -14,13 +15,16 @@ import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Controller.Sort.SortByNumless;
+
 /**
  *
  * @author PC
  */
 public class Subjectfrm extends javax.swing.JPanel {
- private DefaultTableModel table = null;
+
+    private DefaultTableModel table = null;
     private ButtonGroup bd = null;
+
     public Subjectfrm() {
         initComponents();
         groupradio();
@@ -39,13 +43,13 @@ public class Subjectfrm extends javax.swing.JPanel {
 
         panelALL1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        txtNameSubjectSearch1 = new javax.swing.JTextField();
+        txtNameSubjectSearch = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtNumOfLesSubjectMin1 = new javax.swing.JTextField();
+        txtNumOfLesSubjectMin = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtNumOfLesSubjectMax1 = new javax.swing.JTextField();
-        rbSearchSubjectByName1 = new javax.swing.JRadioButton();
-        rbSearchSubjectByNumOfLes1 = new javax.swing.JRadioButton();
+        txtNumOfLesSubjectMax = new javax.swing.JTextField();
+        rbSearchSubjectByName = new javax.swing.JRadioButton();
+        rbSearchSubjectByNumOfLes = new javax.swing.JRadioButton();
         btnSearchSubject1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         rbSortSubjectNumOfLesDesc = new javax.swing.JRadioButton();
@@ -82,19 +86,19 @@ public class Subjectfrm extends javax.swing.JPanel {
 
         jLabel8.setText("Đến");
 
-        rbSearchSubjectByName1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        rbSearchSubjectByName1.setText("Theo tên");
-        rbSearchSubjectByName1.addActionListener(new java.awt.event.ActionListener() {
+        rbSearchSubjectByName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbSearchSubjectByName.setText("Theo tên");
+        rbSearchSubjectByName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbSearchSubjectByName1ActionPerformed(evt);
+                rbSearchSubjectByNameActionPerformed(evt);
             }
         });
 
-        rbSearchSubjectByNumOfLes1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        rbSearchSubjectByNumOfLes1.setText("Theo số tiết");
-        rbSearchSubjectByNumOfLes1.addActionListener(new java.awt.event.ActionListener() {
+        rbSearchSubjectByNumOfLes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbSearchSubjectByNumOfLes.setText("Theo số tiết");
+        rbSearchSubjectByNumOfLes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbSearchSubjectByNumOfLes1ActionPerformed(evt);
+                rbSearchSubjectByNumOfLesActionPerformed(evt);
             }
         });
 
@@ -116,21 +120,21 @@ public class Subjectfrm extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(rbSearchSubjectByName1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rbSearchSubjectByName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNameSubjectSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNameSubjectSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(rbSearchSubjectByNumOfLes1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rbSearchSubjectByNumOfLes, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNumOfLesSubjectMin1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNumOfLesSubjectMin, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNumOfLesSubjectMax1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNumOfLesSubjectMax, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnSearchSubject1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -138,18 +142,18 @@ public class Subjectfrm extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNameSubjectSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbSearchSubjectByName1))
+                    .addComponent(txtNameSubjectSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbSearchSubjectByName))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(rbSearchSubjectByNumOfLes1))
+                        .addComponent(rbSearchSubjectByNumOfLes))
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel7)
-                        .addComponent(txtNumOfLesSubjectMin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNumOfLesSubjectMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8)
-                        .addComponent(txtNumOfLesSubjectMax1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNumOfLesSubjectMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(11, 11, 11)
                 .addComponent(btnSearchSubject1)
                 .addGap(10, 10, 10))
@@ -262,7 +266,7 @@ public class Subjectfrm extends javax.swing.JPanel {
                 .addComponent(jScrollPane1)
                 .addGap(10, 10, 10))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(354, 354, 354)
+                .addGap(345, 345, 345)
                 .addComponent(btnReset)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,15 +278,14 @@ public class Subjectfrm extends javax.swing.JPanel {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnReset)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addComponent(btnReset))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(175, 175, 175)
                     .addComponent(btnDeleteSubject1)
-                    .addContainerGap(175, Short.MAX_VALUE)))
+                    .addContainerGap(110, Short.MAX_VALUE)))
         );
 
         jPanel3.setBackground(new java.awt.Color(235, 253, 255));
@@ -396,9 +399,9 @@ public class Subjectfrm extends javax.swing.JPanel {
             panelALL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelALL1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(panelALL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -412,43 +415,36 @@ public class Subjectfrm extends javax.swing.JPanel {
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
                         .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(31, 31, 31)
-                    .addComponent(panelALL1, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(32, Short.MAX_VALUE)))
+            .addComponent(panelALL1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 704, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(panelALL1, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelALL1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rbSearchSubjectByName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSearchSubjectByName1ActionPerformed
+    private void rbSearchSubjectByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSearchSubjectByNameActionPerformed
         txtNumOfLesSubjectMax.setText("");
         txtNumOfLesSubjectMin.setText("");
-    }//GEN-LAST:event_rbSearchSubjectByName1ActionPerformed
+    }//GEN-LAST:event_rbSearchSubjectByNameActionPerformed
 
-    private void rbSearchSubjectByNumOfLes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSearchSubjectByNumOfLes1ActionPerformed
+    private void rbSearchSubjectByNumOfLesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSearchSubjectByNumOfLesActionPerformed
         txtNameSubjectSearch.setText("");
-    }//GEN-LAST:event_rbSearchSubjectByNumOfLes1ActionPerformed
+    }//GEN-LAST:event_rbSearchSubjectByNumOfLesActionPerformed
 
     private void btnSearchSubject1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSubject1ActionPerformed
         if (rbSearchSubjectByName.isSelected() == true) {
@@ -525,12 +521,17 @@ public class Subjectfrm extends javax.swing.JPanel {
         if (checkText() == false) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin hoặc chọn thông tin cần sửa từ bảng");
         } else {
-            for (int i = 0; i < tableData.getRowCount(); i++) {
-                if (txtMamh.getText().equalsIgnoreCase(tableData.getValueAt(i, 0).toString()) == false) {
-                    JOptionPane.showMessageDialog(null, "Môn học muốn sửa không tồn tại");
-                    SetTextNull();
-                    return;
-                }
+            if (checkInput()==true) {
+                var Mamh = txtMamh.getText();
+            var Tenmh = txtTenmh.getText();
+            var Loaimh = txtLoaiMonhoc.getText();
+            var Sotiet = Integer.parseInt(txtSotiet.getText());
+            Subject sub = new Subject(Mamh, Tenmh, Sotiet, Loaimh);
+                new SubjectDB().set(sub);
+                deleteDataTable();
+                ShowTable(new SubjectDB().showAll());
+            }else{
+                JOptionPane.showMessageDialog(null,"môn học cần sửa không tồn tại");
             }
         }
     }//GEN-LAST:event_btnEditSubjectActionPerformed
@@ -540,6 +541,10 @@ public class Subjectfrm extends javax.swing.JPanel {
         if (checkText() == false) {
             JOptionPane.showMessageDialog(null, "Thông tin không được để trống !!!!!!");
         } else {
+            if (checkInput()) {
+                JOptionPane.showMessageDialog(null,"mã đã tồn tại");
+                return;
+            }
             var Mamh = txtMamh.getText();
             var Tenmh = txtTenmh.getText();
             var Loaimh = txtLoaiMonhoc.getText();
@@ -561,11 +566,8 @@ public class Subjectfrm extends javax.swing.JPanel {
     private javax.swing.JButton btnDeleteSubject1;
     private javax.swing.JButton btnEditSubject;
     private javax.swing.JButton btnReset;
-    private javax.swing.JButton btnSearchSubject;
     private javax.swing.JButton btnSearchSubject1;
     private javax.swing.JButton btnSort;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -575,26 +577,19 @@ public class Subjectfrm extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel panelALL;
     private javax.swing.JPanel panelALL1;
     private javax.swing.JRadioButton rbSearchSubjectByName;
-    private javax.swing.JRadioButton rbSearchSubjectByName1;
     private javax.swing.JRadioButton rbSearchSubjectByNumOfLes;
-    private javax.swing.JRadioButton rbSearchSubjectByNumOfLes1;
     private javax.swing.JRadioButton rbSortSubjectNumOfLesASC;
     private javax.swing.JRadioButton rbSortSubjectNumOfLesDesc;
     private javax.swing.JTable tableData;
     private javax.swing.JTextField txtLoaiMonhoc;
     private javax.swing.JTextField txtMamh;
     private javax.swing.JTextField txtNameSubjectSearch;
-    private javax.swing.JTextField txtNameSubjectSearch1;
     private javax.swing.JTextField txtNumOfLesSubjectMax;
-    private javax.swing.JTextField txtNumOfLesSubjectMax1;
     private javax.swing.JTextField txtNumOfLesSubjectMin;
-    private javax.swing.JTextField txtNumOfLesSubjectMin1;
     private javax.swing.JTextField txtSotiet;
     private javax.swing.JTextField txtTenmh;
     // End of variables declaration//GEN-END:variables
@@ -640,6 +635,7 @@ public class Subjectfrm extends javax.swing.JPanel {
                 || txtSotiet.getText().equalsIgnoreCase("")
                 || txtLoaiMonhoc.getText().equalsIgnoreCase(""));
     }
+
     private List<Subject> getDataTbale() {
         List<Subject> arr = new ArrayList<>();
         for (int i = 0; i < tableData.getRowCount(); i++) {
@@ -651,5 +647,14 @@ public class Subjectfrm extends javax.swing.JPanel {
             arr.add(sb);
         }
         return arr;
+    }
+
+    private boolean checkInput() {
+        for (int i = 0; i < tableData.getRowCount(); i++) {
+            if (txtMamh.getText().equalsIgnoreCase(tableData.getValueAt(i, 0).toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
