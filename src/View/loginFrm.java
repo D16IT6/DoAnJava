@@ -23,7 +23,6 @@ public class loginFrm extends javax.swing.JFrame {
 
     public loginFrm() {
         initComponents();
-        loadData();
         goupCheckox();
         showPass();
         btnShowPass.requestFocus();
@@ -348,10 +347,6 @@ public class loginFrm extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     public boolean kiemtra() {
         return true;
-    }
-
-    private void loadData() {
-
     }
 
     private void showPass() {

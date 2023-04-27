@@ -37,16 +37,16 @@ public class Subjectfrm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelALL = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        txtNameSubjectSearch = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        txtNumOfLesSubjectMin = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtNumOfLesSubjectMax = new javax.swing.JTextField();
-        rbSearchSubjectByName = new javax.swing.JRadioButton();
-        rbSearchSubjectByNumOfLes = new javax.swing.JRadioButton();
-        btnSearchSubject = new javax.swing.JButton();
+        panelALL1 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        txtNameSubjectSearch1 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtNumOfLesSubjectMin1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtNumOfLesSubjectMax1 = new javax.swing.JTextField();
+        rbSearchSubjectByName1 = new javax.swing.JRadioButton();
+        rbSearchSubjectByNumOfLes1 = new javax.swing.JRadioButton();
+        btnSearchSubject1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         rbSortSubjectNumOfLesDesc = new javax.swing.JRadioButton();
         rbSortSubjectNumOfLesASC = new javax.swing.JRadioButton();
@@ -69,87 +69,89 @@ public class Subjectfrm extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtSotiet = new javax.swing.JTextField();
 
-        panelALL.setBackground(new java.awt.Color(235, 253, 255));
-        panelALL.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "QUẢN LÝ MÔN HỌC", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24))); // NOI18N
-        panelALL.setPreferredSize(new java.awt.Dimension(950, 600));
+        setPreferredSize(new java.awt.Dimension(900, 650));
 
-        jPanel6.setBackground(new java.awt.Color(235, 253, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Tìm kiếm môn học", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        panelALL1.setBackground(new java.awt.Color(235, 253, 255));
+        panelALL1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "QUẢN LÝ MÔN HỌC", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24))); // NOI18N
+        panelALL1.setPreferredSize(new java.awt.Dimension(950, 600));
 
-        jLabel1.setText("Từ");
+        jPanel7.setBackground(new java.awt.Color(235, 253, 255));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Tìm kiếm môn học", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        jLabel2.setText("Đến");
+        jLabel7.setText("Từ");
 
-        rbSearchSubjectByName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        rbSearchSubjectByName.setText("Theo tên");
-        rbSearchSubjectByName.addActionListener(new java.awt.event.ActionListener() {
+        jLabel8.setText("Đến");
+
+        rbSearchSubjectByName1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbSearchSubjectByName1.setText("Theo tên");
+        rbSearchSubjectByName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbSearchSubjectByNameActionPerformed(evt);
+                rbSearchSubjectByName1ActionPerformed(evt);
             }
         });
 
-        rbSearchSubjectByNumOfLes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        rbSearchSubjectByNumOfLes.setText("Theo số tiết");
-        rbSearchSubjectByNumOfLes.addActionListener(new java.awt.event.ActionListener() {
+        rbSearchSubjectByNumOfLes1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbSearchSubjectByNumOfLes1.setText("Theo số tiết");
+        rbSearchSubjectByNumOfLes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbSearchSubjectByNumOfLesActionPerformed(evt);
+                rbSearchSubjectByNumOfLes1ActionPerformed(evt);
             }
         });
 
-        btnSearchSubject.setBackground(new java.awt.Color(51, 51, 51));
-        btnSearchSubject.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnSearchSubject.setForeground(new java.awt.Color(255, 255, 255));
-        btnSearchSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
-        btnSearchSubject.setText("Tìm kiếm");
-        btnSearchSubject.addActionListener(new java.awt.event.ActionListener() {
+        btnSearchSubject1.setBackground(new java.awt.Color(51, 51, 51));
+        btnSearchSubject1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSearchSubject1.setForeground(new java.awt.Color(255, 255, 255));
+        btnSearchSubject1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
+        btnSearchSubject1.setText("Tìm kiếm");
+        btnSearchSubject1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchSubjectActionPerformed(evt);
+                btnSearchSubject1ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(rbSearchSubjectByName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(rbSearchSubjectByName1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNameSubjectSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(rbSearchSubjectByNumOfLes, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNameSubjectSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(rbSearchSubjectByNumOfLes1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNumOfLesSubjectMin, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNumOfLesSubjectMin1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNumOfLesSubjectMax, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnSearchSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtNumOfLesSubjectMax1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSearchSubject1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNameSubjectSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbSearchSubjectByName))
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNameSubjectSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbSearchSubjectByName1))
                 .addGap(10, 10, 10)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(rbSearchSubjectByNumOfLes))
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(txtNumOfLesSubjectMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addComponent(txtNumOfLesSubjectMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(rbSearchSubjectByNumOfLes1))
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(txtNumOfLesSubjectMin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)
+                        .addComponent(txtNumOfLesSubjectMax1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(11, 11, 11)
-                .addComponent(btnSearchSubject)
+                .addComponent(btnSearchSubject1)
                 .addGap(10, 10, 10))
         );
 
@@ -260,7 +262,7 @@ public class Subjectfrm extends javax.swing.JPanel {
                 .addComponent(jScrollPane1)
                 .addGap(10, 10, 10))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(346, 346, 346)
+                .addGap(354, 354, 354)
                 .addComponent(btnReset)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,15 +274,15 @@ public class Subjectfrm extends javax.swing.JPanel {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReset)
-                .addGap(0, 0, 0))
+                .addContainerGap(11, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(175, 175, 175)
                     .addComponent(btnDeleteSubject1)
-                    .addContainerGap(109, Short.MAX_VALUE)))
+                    .addContainerGap(175, Short.MAX_VALUE)))
         );
 
         jPanel3.setBackground(new java.awt.Color(235, 253, 255));
@@ -388,66 +390,67 @@ public class Subjectfrm extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout panelALLLayout = new javax.swing.GroupLayout(panelALL);
-        panelALL.setLayout(panelALLLayout);
-        panelALLLayout.setHorizontalGroup(
-            panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelALL1Layout = new javax.swing.GroupLayout(panelALL1);
+        panelALL1.setLayout(panelALL1Layout);
+        panelALL1Layout.setHorizontalGroup(
+            panelALL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelALLLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelALL1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelALL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        panelALLLayout.setVerticalGroup(
-            panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelALLLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelALLLayout.createSequentialGroup()
+        panelALL1Layout.setVerticalGroup(
+            panelALL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelALL1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(panelALL1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelALL1Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 849, Short.MAX_VALUE)
+            .addGap(0, 900, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(panelALL, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(31, 31, 31)
+                    .addComponent(panelALL1, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(32, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 643, Short.MAX_VALUE)
+            .addGap(0, 704, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(panelALL, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(panelALL1, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
+
+        getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rbSearchSubjectByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSearchSubjectByNameActionPerformed
+    private void rbSearchSubjectByName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSearchSubjectByName1ActionPerformed
         txtNumOfLesSubjectMax.setText("");
         txtNumOfLesSubjectMin.setText("");
-    }//GEN-LAST:event_rbSearchSubjectByNameActionPerformed
+    }//GEN-LAST:event_rbSearchSubjectByName1ActionPerformed
 
-    private void rbSearchSubjectByNumOfLesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSearchSubjectByNumOfLesActionPerformed
+    private void rbSearchSubjectByNumOfLes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSearchSubjectByNumOfLes1ActionPerformed
         txtNameSubjectSearch.setText("");
-    }//GEN-LAST:event_rbSearchSubjectByNumOfLesActionPerformed
+    }//GEN-LAST:event_rbSearchSubjectByNumOfLes1ActionPerformed
 
-    private void btnSearchSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSubjectActionPerformed
+    private void btnSearchSubject1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSubject1ActionPerformed
         if (rbSearchSubjectByName.isSelected() == true) {
             var textInput = txtNameSubjectSearch.getText();
             List<Subject> list = new SubjectDB().SearchByName(textInput);
@@ -460,7 +463,7 @@ public class Subjectfrm extends javax.swing.JPanel {
             deleteDataTable();
             ShowTable(list);
         }
-    }//GEN-LAST:event_btnSearchSubjectActionPerformed
+    }//GEN-LAST:event_btnSearchSubject1ActionPerformed
 
     private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed
 
@@ -559,6 +562,7 @@ public class Subjectfrm extends javax.swing.JPanel {
     private javax.swing.JButton btnEditSubject;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearchSubject;
+    private javax.swing.JButton btnSearchSubject1;
     private javax.swing.JButton btnSort;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -566,22 +570,31 @@ public class Subjectfrm extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelALL;
+    private javax.swing.JPanel panelALL1;
     private javax.swing.JRadioButton rbSearchSubjectByName;
+    private javax.swing.JRadioButton rbSearchSubjectByName1;
     private javax.swing.JRadioButton rbSearchSubjectByNumOfLes;
+    private javax.swing.JRadioButton rbSearchSubjectByNumOfLes1;
     private javax.swing.JRadioButton rbSortSubjectNumOfLesASC;
     private javax.swing.JRadioButton rbSortSubjectNumOfLesDesc;
     private javax.swing.JTable tableData;
     private javax.swing.JTextField txtLoaiMonhoc;
     private javax.swing.JTextField txtMamh;
     private javax.swing.JTextField txtNameSubjectSearch;
+    private javax.swing.JTextField txtNameSubjectSearch1;
     private javax.swing.JTextField txtNumOfLesSubjectMax;
+    private javax.swing.JTextField txtNumOfLesSubjectMax1;
     private javax.swing.JTextField txtNumOfLesSubjectMin;
+    private javax.swing.JTextField txtNumOfLesSubjectMin1;
     private javax.swing.JTextField txtSotiet;
     private javax.swing.JTextField txtTenmh;
     // End of variables declaration//GEN-END:variables
