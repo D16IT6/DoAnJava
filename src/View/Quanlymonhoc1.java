@@ -31,7 +31,7 @@ public class Quanlymonhoc1 extends javax.swing.JPanel {
             table = (DefaultTableModel) tableData.getModel();
             doc();
         } catch (SQLException ex) {
-            Logger.getLogger(Quanlymonhoc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QuanlymonhocFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -396,7 +396,7 @@ public class Quanlymonhoc1 extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditSubjectActionPerformed
 
     private void btnAddNewSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewSubjectActionPerformed
-        new frmThemMonHoc().setVisible(true);
+       
     }//GEN-LAST:event_btnAddNewSubjectActionPerformed
 
     private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed

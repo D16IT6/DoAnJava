@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package View;
-
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -320,7 +319,7 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener{
             home.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(Quanlymonhoc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(QuanlymonhocFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -342,7 +341,7 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener{
     }//GEN-LAST:event_btnQuanlymonhocActionPerformed
 
     private void btnQuanlysinhvienActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        new Quanlysinhvien().setVisible(true);
+        new QuanlysinhvienFrm().setVisible(true);
             this.dispose();
     }                                               
 
@@ -359,7 +358,7 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener{
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     private void showPanel(JPanel panel){
-        childPanel =panel;
+        childPanel = panel;
         pnMain.removeAll();
         pnMain.add(childPanel);
         pnMain.validate();

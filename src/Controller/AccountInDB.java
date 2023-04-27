@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import Model.TaiKhoan;
+import Model.Acount;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,8 +12,14 @@ import java.sql.ResultSet;
 
 public class AccountInDB {
 
-    public boolean kiemtra(String accountname, String password) {
-        Connection conn = ConnectSql.Connect.connectionDatabase();
+    Connection conn;
+
+    public AccountInDB() {
+        conn = ConnectSql.Connect.connectionDatabase();
+    }
+
+    public boolean CheckLogin(String accountname, String password) {
+
         try {
             String sql = "SELECT COUNT(*) FROM TAIKHOAN WHERE TENTAIKHOAN=? AND MATKHAU=?";
             PreparedStatement str = conn.prepareStatement(sql);

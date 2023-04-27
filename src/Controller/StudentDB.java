@@ -34,15 +34,16 @@ public class StudentDB implements IDataDB<Student> {
     @Override
     public void add(Student sv) {
         try {
-            String sql = "INSERT INTO SINHVIEN VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO SINHVIEN VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, sv.getMasv());
             ps.setString(2, sv.getHodem());
             ps.setString(2, sv.getTen());
             ps.setString(4, sv.getNgaysinh().toString());
-            ps.setString(5, sv.getQuequan());
-            ps.setString(6, sv.getSdt());
             ps.setString(7, sv.getEmail());
+            ps.setString(5, sv.getLop());
+            ps.setString(6, sv.getNganh());
+            ps.setString(8, sv.getKhoa());
             ps.executeQuery();
             JOptionPane.showMessageDialog(null, "Thêm thành công !!");
         } catch (Exception ex) {
@@ -62,9 +63,10 @@ public class StudentDB implements IDataDB<Student> {
                 sv.setHodem(rs.getString("HODEM"));
                 sv.setTen(rs.getString("TEN"));
                 sv.setNgaysinh(rs.getString("NGAYSINH"));
-                sv.setQuequan(rs.getString("QUEQUAN"));
-                sv.setSdt(rs.getString("SDT"));
                 sv.setEmail(rs.getString("EMAIL"));
+                sv.setLop(rs.getString("TENLOP"));
+                sv.setNganh(rs.getString("MANGANH"));
+                sv.setKhoa(rs.getString("TENKHOA"));
                 listStudent.add(sv);
             }
         } catch (SQLException ex) {
@@ -80,7 +82,7 @@ public class StudentDB implements IDataDB<Student> {
             if (xd == 0) {
                 String sql = "DELETE FROM SINHVIEN WHERE MASV=?";
                 PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1,t.getMasv().replaceAll(" ",""));
+                ps.setString(1, t.getMasv().replaceAll(" ", ""));
                 ps.execute();
                 JOptionPane.showMessageDialog(null, "Xóa thành công !!!!!!");
             }
@@ -95,8 +97,27 @@ public class StudentDB implements IDataDB<Student> {
     }
 
     @Override
-    public void showByName(String x) {
+    public List<Student> SearchByName(String x) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public Student SearchByID(String id) {
+
+        return null;
+
+    }
+
+    public List<Student> SearchByAddress(String address) {
+
+        return null;
+
+    }
+
+    public List<Student> SortByNameAsc() {
+        return null;
+    }
+
+    public List<Student> SortByNameDesc() {
+        return null;
+    }
 }
