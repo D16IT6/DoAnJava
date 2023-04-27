@@ -14,22 +14,30 @@ public class Person {
     private String ngaysinh;
     private String Khoa;
     private String email;
+    private String quequan;
 
-    public Person(String hodem, String ten, String ngaysinh, String Khoa, String email) {
+
+
+    public Person() {
+    }
+
+    public Person(String hodem, String ten, String ngaysinh, String Khoa, String email, String quequan) {
         this.hodem = hodem;
         this.ten = ten;
         this.ngaysinh = ngaysinh;
         this.Khoa = Khoa;
         this.email = email;
+        this.quequan = quequan;
     }
 
-    public Person() {
+    public String getQuequan() {
+        return quequan;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" + "hodem=" + hodem + ", ten=" + ten + ", ngaysinh=" + ngaysinh + ", Khoa=" + Khoa + ", email=" + email + '}';
+    public void setQuequan(String quequan) {
+        this.quequan = quequan;
     }
+
 
     public String getHodem() {
         return hodem;

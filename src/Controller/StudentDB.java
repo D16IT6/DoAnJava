@@ -42,7 +42,7 @@ public class StudentDB implements IDataDB<Student> {
             ps.setString(4, sv.getNgaysinh().toString());
             ps.setString(7, sv.getEmail());
             ps.setString(5, sv.getLop());
-            ps.setString(6, sv.getNganh());
+            ps.setString(6, sv.getQuequan());
             ps.setString(8, sv.getKhoa());
             ps.executeQuery();
             JOptionPane.showMessageDialog(null, "Thêm thành công !!");
@@ -65,7 +65,7 @@ public class StudentDB implements IDataDB<Student> {
                 sv.setNgaysinh(rs.getString("NGAYSINH"));
                 sv.setEmail(rs.getString("EMAIL"));
                 sv.setLop(rs.getString("TENLOP"));
-                sv.setNganh(rs.getString("MANGANH"));
+                sv.setQuequan(rs.getString("MANGANH"));
                 sv.setKhoa(rs.getString("TENKHOA"));
                 listStudent.add(sv);
             }
