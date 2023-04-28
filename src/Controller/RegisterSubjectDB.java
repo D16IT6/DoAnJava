@@ -22,7 +22,7 @@ public class RegisterSubjectDB {
     }
 
     public List<String> showAll() {
-        String sql = "SELECT TENMH FROM MONHOC";
+        String sql = "SELECT DISTINCT TENMH FROM MONHOC";
         PreparedStatement prs;
         List<String> arrSubject = new ArrayList<>();
         try {
@@ -37,6 +37,7 @@ public class RegisterSubjectDB {
         }
         return arrSubject;
     }
+
 //    public static void main(String[] args) {
 //        List<String> arr=new RegisterSubjectDB().showAll();
 //        for(String a:arr){

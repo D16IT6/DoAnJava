@@ -148,6 +148,11 @@ public class loginFrm extends javax.swing.JFrame {
         cbAdmin.setBackground(new java.awt.Color(204, 204, 255));
         cbAdmin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cbAdmin.setText("Admin");
+        cbAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAdminActionPerformed(evt);
+            }
+        });
 
         cbSinhvien.setBackground(new java.awt.Color(204, 204, 255));
         cbSinhvien.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -316,6 +321,10 @@ public class loginFrm extends javax.swing.JFrame {
     private void txtAcountnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAcountnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAcountnameActionPerformed
+
+    private void cbAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAdminActionPerformed
 
     /**
      * @param args the command line arguments

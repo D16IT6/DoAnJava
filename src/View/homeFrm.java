@@ -9,11 +9,11 @@ import javax.swing.JPanel;
 
 public class homeFrm extends javax.swing.JFrame implements ActionListener {
 
-    JPanel coban = new home();
+    JPanel home = new home();
 
     public homeFrm() throws SQLException {
         initComponents();
-        ShowHome(coban);
+        ShowPanel(home);
         this.setLocationRelativeTo(this);
         this.setLocationRelativeTo(this);
 
@@ -33,6 +33,7 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
         btnPhanlophoc = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -45,6 +46,11 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("QUẢN LÝ ĐĂNG KÝ MÔN HỌC");
         setResizable(false);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -127,6 +133,17 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
             }
         });
 
+        btnLogout.setBackground(new java.awt.Color(0, 0, 0));
+        btnLogout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/exit.png"))); // NOI18N
+        btnLogout.setText("Đăng xuất");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -137,6 +154,7 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
             .addComponent(btnQuanlydangky, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnPhanlophoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -153,7 +171,9 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
                 .addComponent(btnPhanlophoc, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogin)
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -214,11 +234,11 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 954, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
         );
 
         pnTitle.add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -230,26 +250,23 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
+                .addComponent(pnTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-            .addComponent(pnTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addComponent(pnTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        ShowHome(new home());
+        ShowPanel(new home());
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnQuanlydangkyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanlydangkyActionPerformed
@@ -265,16 +282,25 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnQuanlymonhocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanlymonhocActionPerformed
-        ShowHome(new Subjectfrm());
+        ShowPanel(new Subjectfrm());
     }//GEN-LAST:event_btnQuanlymonhocActionPerformed
 
     private void btnQuanlysinhvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanlysinhvienActionPerformed
-        ShowHome(new Studentfrm());
+        ShowPanel(new Studentfrm());
     }//GEN-LAST:event_btnQuanlysinhvienActionPerformed
 
     private void btnPhanlophocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhanlophocActionPerformed
-            
+        ShowPanel(new Quanlylophoc1());
     }//GEN-LAST:event_btnPhanlophocActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseClicked
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        new loginFrm().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,6 +321,7 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPhanlophoc;
     private javax.swing.JButton btnQuanlydangky;
     private javax.swing.JButton btnQuanlymonhoc;
@@ -315,10 +342,9 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
     }
-
-    private void ShowHome(JPanel coban) {
+    private void ShowPanel(JPanel Panel) {
         pnTitle.removeAll();
-        pnTitle.add(coban);
+        pnTitle.add(Panel);
         pnTitle.validate();
     }
 

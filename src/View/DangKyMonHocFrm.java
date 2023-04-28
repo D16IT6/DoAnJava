@@ -47,6 +47,7 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -117,6 +118,12 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable3);
 
         btnDangky.setText("Đăng ký");
+
+        cbMonhoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMonhocActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Môn học");
 
@@ -192,17 +199,31 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
             }
         });
 
+        btnLogOut.setBackground(new java.awt.Color(0, 0, 0));
+        btnLogOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogOut.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/exit.png"))); // NOI18N
+        btnLogOut.setText("Đăng xuất");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+            .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
@@ -212,7 +233,7 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 184, Short.MAX_VALUE)
+            .addGap(0, 160, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,8 +261,7 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -251,6 +271,15 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        new loginFrm().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void cbMonhocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMonhocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbMonhocActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,6 +319,7 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangky;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnLogOut;
     private javax.swing.JComboBox<String> cbMonhoc;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
