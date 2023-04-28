@@ -24,8 +24,6 @@ public class Student extends Person{
         this.masv = masv;
         this.Lop = Lop;
     }
-
-
     public void setLop(String Lop) {
         this.Lop = Lop;
     }
