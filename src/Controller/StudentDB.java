@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class StudentDB implements IDataDB<Student> {
 
-    List<Student> listStudent;
-    Connection conn;
+    private List<Student> listStudent;
+    private Connection conn;
 
     public StudentDB(List<Student> listStudent, Connection conn) {
         this.listStudent = listStudent;
@@ -34,20 +34,19 @@ public class StudentDB implements IDataDB<Student> {
     @Override
     public void add(Student sv) {
         try {
-            String sql = "INSERT INTO SINHVIEN VALUES (?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO SINHVIEN VALUES (?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, sv.getMasv());
             ps.setString(2, sv.getHodem());
-            ps.setString(2, sv.getTen());
-            ps.setString(4, sv.getNgaysinh().toString());
-            ps.setString(7, sv.getEmail());
-            ps.setString(5, sv.getLop());
-            ps.setString(6, sv.getQuequan());
-            ps.setString(8, sv.getKhoa());
-            ps.executeQuery();
-            JOptionPane.showMessageDialog(null, "Thêm thành công !!");
+            ps.setString(3, sv.getTen());
+            ps.setString(4, sv.getNgaysinh());
+            ps.setString(5, sv.getQuequan());
+            ps.setString(6, sv.getEmail());
+            ps.setString(7, sv.getMaLop());          
+            ps.execute();
+            JOptionPane.showMessageDialog(null, "Thêm thành công !!");           
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Thêm thất bại " + ex);
+            JOptionPane.showMessageDialog(null, "Thêm thất bại " + ex);           
         }
     }
 
@@ -63,10 +62,9 @@ public class StudentDB implements IDataDB<Student> {
                 sv.setHodem(rs.getString("HODEM"));
                 sv.setTen(rs.getString("TEN"));
                 sv.setNgaysinh(rs.getString("NGAYSINH"));
+                sv.setQuequan(rs.getString("QUEQUAN"));
                 sv.setEmail(rs.getString("EMAIL"));
-                sv.setLop(rs.getString("TENLOP"));
-                sv.setQuequan(rs.getString("MANGANH"));
-                sv.setKhoa(rs.getString("TENKHOA"));
+                sv.setMaLop(rs.getString("MALOP"));  
                 listStudent.add(sv);
             }
         } catch (SQLException ex) {
@@ -82,7 +80,7 @@ public class StudentDB implements IDataDB<Student> {
             if (xd == 0) {
                 String sql = "DELETE FROM SINHVIEN WHERE MASV=?";
                 PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1, t.getMasv().replaceAll(" ", ""));
+                ps.setString(1, t.getMasv().replaceAll(" ", ""));//thay the khoang
                 ps.execute();
                 JOptionPane.showMessageDialog(null, "Xóa thành công !!!!!!");
             }
@@ -93,7 +91,21 @@ public class StudentDB implements IDataDB<Student> {
 
     @Override
     public void set(Student t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql ="UPDATE SINHVIEN SET HODEM=?,TEN=?,NGAYSINH=?,QUEQUAN=?,EMAIL=?,MALOP=? WHERE MASV=?";
+            PreparedStatement ps =conn.prepareStatement(sql);
+            ps.setString(1, t.getHodem());
+            ps.setString(2, t.getTen());
+            ps.setString(3, t.getNgaysinh());
+            ps.setString(4, t.getQuequan());
+            ps.setString(5, t.getEmail());
+            ps.setString(6, t.getMaLop());
+            ps.setString(7, t.getMasv().replaceAll(" ", ""));
+            ps.execute();
+            JOptionPane.showMessageDialog(null, "Sửa thành công !!!!!!"+t.toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Sửa thất bại !!!!!!"+e);
+        }
     }
 
     @Override
@@ -120,4 +132,25 @@ public class StudentDB implements IDataDB<Student> {
     public List<Student> SortByNameDesc() {
         return null;
     }
+    public List<String>ShowAllClass() {
+        String sql ="SELECT MALOP  FROM LOP ";  
+        List<String> arrClass=new ArrayList<>();
+        try {          
+            PreparedStatement ps =conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                //arrClass.add(rs.getString("MALOP").replaceAll(" ", "")+":"+rs.getString("TenLop"));
+                arrClass.add(rs.getString("MALOP"));
+            }
+        } catch (Exception e) {
+        }
+        return arrClass;
+    }
+//    public static void main(String[] args) {
+//        List<String> arr=new StudentDB().ShowAllClass();
+//        for(String lop : arr )
+//        {
+//            System.out.println(lop);
+//        }
+//    }
 }

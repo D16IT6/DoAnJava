@@ -6,6 +6,7 @@ package View;
 
 import Controller.StudentDB;
 import Model.Student;
+import com.sun.net.httpserver.Authenticator;
 import java.awt.Component;
 import java.awt.KeyboardFocusManager;
 import java.text.SimpleDateFormat;
@@ -15,13 +16,14 @@ import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author PC
  */
 public class Studentfrm extends javax.swing.JPanel {
-Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+    Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
     ButtonGroup rb1;
     ButtonGroup rb2;
     DefaultTableModel model;
@@ -31,7 +33,8 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
         initComponents();
         groupRb();
         model = (DefaultTableModel) tbStudent.getModel();
-        showData(new StudentDB().showAll());
+        showData();
+        showClass();
     }
 
     /**
@@ -60,19 +63,26 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
         btnDeleteSubject1 = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        btnDeleteSubject = new javax.swing.JButton();
-        btnEditSubject = new javax.swing.JButton();
-        btnAddNewSubject = new javax.swing.JButton();
+        btnDeleteStudent = new javax.swing.JButton();
+        btnEditStudent = new javax.swing.JButton();
+        btnAddNewStudent = new javax.swing.JButton();
         txtMasv = new javax.swing.JTextField();
         txtHoDem = new javax.swing.JTextField();
         txtTen = new javax.swing.JTextField();
-        txtSotiet = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        txtSotiet1 = new javax.swing.JTextField();
-        txtSotiet2 = new javax.swing.JTextField();
+        txtNgaySinh = new javax.swing.JTextField();
+        cbClass = new javax.swing.JComboBox<>();
+        txtQueQuan = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         panelALL.setBackground(new java.awt.Color(235, 253, 255));
-        panelALL.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "QUẢN LÝ MÔN HỌC", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24))); // NOI18N
+        panelALL.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "QUẢN LÝ SINH VIÊN", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24))); // NOI18N
         panelALL.setPreferredSize(new java.awt.Dimension(950, 600));
 
         jPanel6.setBackground(new java.awt.Color(235, 253, 255));
@@ -105,16 +115,17 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(rbSearchSubjectByName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(27, 27, 27)
                         .addComponent(txtNameSubjectSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
+                        .addGap(178, 178, 178)
                         .addComponent(btnSearchSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,15 +168,14 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(rbSortSubjectNumOfLesDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(rbSortSubjectNumOfLesASC, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(btnSort1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(60, 60, 60)
+                .addComponent(rbSortSubjectNumOfLesDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(rbSortSubjectNumOfLesASC, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(179, 179, 179)
+                .addComponent(btnSort1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -181,7 +191,7 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
         );
 
         jPanel4.setBackground(new java.awt.Color(235, 253, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "DANH SÁCH MÔN HỌC", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "DANH SÁCH SINH VIÊN", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         tbStudent.setBackground(new java.awt.Color(204, 255, 204));
         tbStudent.setModel(new javax.swing.table.DefaultTableModel(
@@ -189,11 +199,11 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
 
             },
             new String [] {
-                "Mã môn học", "Tên môn học", "Ngành học", "Tổng số tiết "
+                "Mã Sinh Viên", "Tên Sinh Viên", "Ngày Sinh", "Quê Quán", "Email", "Mã Lớp"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                true, true, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -236,10 +246,10 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(377, 377, 377)
+                .addGap(422, 422, 422)
                 .addComponent(btnReset)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,9 +262,8 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(btnReset)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(btnReset))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(175, 175, 175)
@@ -263,150 +272,155 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
         );
 
         jPanel3.setBackground(new java.awt.Color(235, 253, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Thông tin môn học", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Thông tin sinh viên", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         jPanel3.setToolTipText("");
 
-        btnDeleteSubject.setBackground(new java.awt.Color(51, 51, 51));
-        btnDeleteSubject.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnDeleteSubject.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeleteSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delete.png"))); // NOI18N
-        btnDeleteSubject.setText("Xóa");
-        btnDeleteSubject.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteStudent.setBackground(new java.awt.Color(51, 51, 51));
+        btnDeleteStudent.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDeleteStudent.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeleteStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delete.png"))); // NOI18N
+        btnDeleteStudent.setText("Xóa");
+        btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteSubjectActionPerformed(evt);
+                btnDeleteStudentActionPerformed(evt);
             }
         });
 
-        btnEditSubject.setBackground(new java.awt.Color(51, 51, 51));
-        btnEditSubject.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEditSubject.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/set.png"))); // NOI18N
-        btnEditSubject.setText("Sửa ");
-        btnEditSubject.addActionListener(new java.awt.event.ActionListener() {
+        btnEditStudent.setBackground(new java.awt.Color(51, 51, 51));
+        btnEditStudent.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnEditStudent.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/set.png"))); // NOI18N
+        btnEditStudent.setText("Sửa ");
+        btnEditStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditSubjectActionPerformed(evt);
+                btnEditStudentActionPerformed(evt);
             }
         });
 
-        btnAddNewSubject.setBackground(new java.awt.Color(51, 51, 51));
-        btnAddNewSubject.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnAddNewSubject.setForeground(new java.awt.Color(255, 255, 255));
-        btnAddNewSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add_16px.png"))); // NOI18N
-        btnAddNewSubject.setText("Thêm");
-        btnAddNewSubject.addActionListener(new java.awt.event.ActionListener() {
+        btnAddNewStudent.setBackground(new java.awt.Color(51, 51, 51));
+        btnAddNewStudent.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAddNewStudent.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddNewStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add_16px.png"))); // NOI18N
+        btnAddNewStudent.setText("Thêm");
+        btnAddNewStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddNewSubjectActionPerformed(evt);
+                btnAddNewStudentActionPerformed(evt);
             }
         });
 
-        txtMasv.setText("Nhập mã sinh viên");
-        txtMasv.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtMasvMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtMasvMouseExited(evt);
-            }
-        });
         txtMasv.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtMasvKeyPressed(evt);
             }
         });
 
-        txtHoDem.setText("Nhập họ đệm");
-        txtHoDem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtHoDemMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtHoDemMouseExited(evt);
+        cbClass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbClassActionPerformed(evt);
             }
         });
 
-        txtTen.setText("Nhập tên");
-        txtTen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtTenMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtTenMouseExited(evt);
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
             }
         });
 
-        txtSotiet.setText("Ngày sinh dd/mm/yy");
-        txtSotiet.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtSotietMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtSotietMouseExited(evt);
-            }
-        });
+        jLabel1.setText("Mã Sinh Viên");
 
-        txtSotiet1.setText("Email xxxxx@gmail.com");
-        txtSotiet1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtSotiet1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtSotiet1MouseExited(evt);
-            }
-        });
+        jLabel2.setText("Họ Đệm");
 
-        txtSotiet2.setText("Quê quán");
+        jLabel3.setText("Tên ");
+
+        jLabel4.setText("Ngày Sinh");
+
+        jLabel5.setText("Quê Quán");
+
+        jLabel6.setText("Email");
+
+        jLabel7.setText("Mã Lớp");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtQueQuan, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtHoDem, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtMasv, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(cbClass, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(btnAddNewSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(btnEditSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(btnDeleteSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtMasv, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(43, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtSotiet2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtSotiet1, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtHoDem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                .addComponent(txtTen, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtSotiet, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addGap(51, 51, 51)
+                .addComponent(btnAddNewStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(btnEditStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(btnDeleteStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtMasv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtHoDem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSotiet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSotiet1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSotiet2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDeleteSubject)
-                    .addComponent(btnEditSubject)
-                    .addComponent(btnAddNewSubject))
+                    .addComponent(txtMasv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtHoDem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtQueQuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDeleteStudent)
+                    .addComponent(btnEditStudent)
+                    .addComponent(btnAddNewStudent))
                 .addContainerGap())
         );
 
@@ -418,24 +432,25 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelALLLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
-                .addGroup(panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(34, 34, 34)
+                .addGroup(panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelALLLayout.setVerticalGroup(
             panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelALLLayout.createSequentialGroup()
                 .addGroup(panelALLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelALLLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(13, 13, 13)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelALLLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -444,13 +459,11 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelALL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(panelALL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelALL, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(panelALL, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -464,7 +477,23 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
     }//GEN-LAST:event_btnSort1ActionPerformed
 
     private void tbStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbStudentMouseClicked
-
+                if(tbStudent.getSelectedRow()>=0){
+                    int rowcheck=tbStudent.getSelectedRow();
+                    txtMasv.setText(tbStudent.getValueAt(rowcheck,0)+"");                    
+                    String name=tbStudent.getValueAt(rowcheck, 1)+"";
+                    String[] catchuoi=name.split(" ");
+                    String hodem="";
+                    for(int i=0;i<catchuoi.length-1;i++){
+                         hodem =hodem+catchuoi[i]+" ";
+                    }                  
+                    String ten =catchuoi[catchuoi.length-1];
+                    txtHoDem.setText(hodem);
+                    txtTen.setText(ten);                  
+                    txtNgaySinh.setText(tbStudent.getValueAt(rowcheck, 2)+"");
+                    txtQueQuan.setText(tbStudent.getValueAt(rowcheck, 3)+"");
+                    txtEmail.setText(tbStudent.getValueAt(rowcheck, 4)+"");
+                    cbClass.setSelectedItem(tbStudent.getValueAt(rowcheck, 5)+"");
+                }
     }//GEN-LAST:event_tbStudentMouseClicked
 
     private void btnDeleteSubject1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSubject1ActionPerformed
@@ -476,90 +505,56 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
 
     }//GEN-LAST:event_btnResetActionPerformed
 
-    private void btnDeleteSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSubjectActionPerformed
+    private void btnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudentActionPerformed
+            String masv =txtMasv.getText();
+            Student sv =new Student(masv);
+            new StudentDB().delete(sv);
+            showData();
+            
+    }//GEN-LAST:event_btnDeleteStudentActionPerformed
 
-    }//GEN-LAST:event_btnDeleteSubjectActionPerformed
+    private void btnEditStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditStudentActionPerformed
+            Student sv =getStudent();
+            new StudentDB().set(sv);
+            showData();
+    }//GEN-LAST:event_btnEditStudentActionPerformed
 
-    private void btnEditSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSubjectActionPerformed
-
-    }//GEN-LAST:event_btnEditSubjectActionPerformed
-
-    private void btnAddNewSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewSubjectActionPerformed
-
-    }//GEN-LAST:event_btnAddNewSubjectActionPerformed
-
-    private void txtMasvMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMasvMouseEntered
-        txtMasv.setText("");
-        txtMasv.requestFocus();
-    }//GEN-LAST:event_txtMasvMouseEntered
-
-    private void txtMasvMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMasvMouseExited
-        if (txtMasv.getText().toString().length() == 0) {
-            txtMasv.setText("Nhap ma sinh vien");
-        }
-    }//GEN-LAST:event_txtMasvMouseExited
-
-    private void txtHoDemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtHoDemMouseEntered
-        if(focusOwner==txtHoDem){
-            if(txtHoDem.getText().equalsIgnoreCase("Nhap ho dem sinh vien"));
-        }
-        txtHoDem.setText("");
-        txtHoDem.requestFocus();
-    }//GEN-LAST:event_txtHoDemMouseEntered
-
-    private void txtHoDemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtHoDemMouseExited
-        if (txtHoDem.getText().toString().length() == 0) {
-            txtHoDem.setText("Nhap ho dem sinh vien");
-        }
-    }//GEN-LAST:event_txtHoDemMouseExited
-
-    private void txtTenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenMouseEntered
-        txtTen.setText("");
-        txtTen.requestFocus();
-    }//GEN-LAST:event_txtTenMouseEntered
-
-    private void txtTenMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenMouseExited
-        if (txtTen.getText().length() == 0) {
-            txtTen.setText("Nhap ten sinh vien");
-        }
-    }//GEN-LAST:event_txtTenMouseExited
-
-    private void txtSotietMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSotietMouseEntered
-        txtSotiet.setText("");
-        txtSotiet.requestFocus();
-    }//GEN-LAST:event_txtSotietMouseEntered
-
-    private void txtSotietMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSotietMouseExited
-        if(txtSotiet.getText().length()==0){
-            txtSotiet.setText("Ngày sinh dd/mm/yy");
-        }
-    }//GEN-LAST:event_txtSotietMouseExited
-
-    private void txtSotiet1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSotiet1MouseExited
-        if(txtSotiet1.getText().length()==0){
-            txtSotiet1.setText("Email xxxxx@gmail.com");
-        }
-    }//GEN-LAST:event_txtSotiet1MouseExited
-
-    private void txtSotiet1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSotiet1MouseEntered
-        txtSotiet1.setText("");
-        txtSotiet1.requestFocus();
-    }//GEN-LAST:event_txtSotiet1MouseEntered
+    private void btnAddNewStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewStudentActionPerformed
+            Student sv =getStudent();
+        StudentDB listsv=new StudentDB();
+        listsv.add(sv);      
+        showData();
+    }//GEN-LAST:event_btnAddNewStudentActionPerformed
 
     private void txtMasvKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMasvKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMasvKeyPressed
 
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void cbClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbClassActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddNewSubject;
-    private javax.swing.JButton btnDeleteSubject;
+    private javax.swing.JButton btnAddNewStudent;
+    private javax.swing.JButton btnDeleteStudent;
     private javax.swing.JButton btnDeleteSubject1;
-    private javax.swing.JButton btnEditSubject;
+    private javax.swing.JButton btnEditStudent;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearchSubject;
     private javax.swing.JButton btnSort1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbClass;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -572,12 +567,12 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
     private javax.swing.JRadioButton rbSortSubjectNumOfLesASC;
     private javax.swing.JRadioButton rbSortSubjectNumOfLesDesc;
     private javax.swing.JTable tbStudent;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtHoDem;
     private javax.swing.JTextField txtMasv;
     private javax.swing.JTextField txtNameSubjectSearch;
-    private javax.swing.JTextField txtSotiet;
-    private javax.swing.JTextField txtSotiet1;
-    private javax.swing.JTextField txtSotiet2;
+    private javax.swing.JTextField txtNgaySinh;
+    private javax.swing.JTextField txtQueQuan;
     private javax.swing.JTextField txtTen;
     // End of variables declaration//GEN-END:variables
     private void groupRb() {
@@ -596,15 +591,31 @@ Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().get
             tbStudent.repaint();
         }
     }
-    private void showData(List<Student> list) {
-//        for (Student st : list) {
-//            var object = new Object[]{
-//                st.getMasv().replaceAll(" ",""), st.getHodem(), st.getTen(), st.getNgaysinh(), st.getQuequan(),
-//                st.getSdt(), st.getEmail()
-//            };
-//            model.addRow(object);
-//            model.fireTableDataChanged();
-//            tbStudent.repaint();
-//        }
+    private void showData() {
+        List<Student> list=new StudentDB().showAll();
+        model.setRowCount(0);
+        for (Student st : list) {
+            model.addRow( new Object[]{
+                st.getMasv(),st.getHodem()+" "+st.getTen(),st.getNgaysinh(),st.getQuequan(),st.getEmail(),st.getMaLop()
+            });            
+        }
+    }
+    private Student getStudent(){
+        String maSV=txtMasv.getText();
+        String hoDem=txtHoDem.getText();
+        String ten=txtTen.getText();
+        String ngaySinh=txtNgaySinh.getText();
+        String queQuan=txtQueQuan.getText();
+        String Email=txtEmail.getText();
+        String maLop=cbClass.getSelectedItem()+"";
+        Student sv =new Student(maSV, maLop, hoDem, ten, ngaySinh, Email, queQuan);
+        return sv;
+    }
+    private void showClass(){
+        List<String> arrClass= new StudentDB().ShowAllClass();
+        for(String lop : arrClass )
+        {
+            cbClass.addItem(lop);
+        }
     }
 }

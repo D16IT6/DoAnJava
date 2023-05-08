@@ -11,8 +11,7 @@ package Model;
 public class Person {
     private String hodem;
     private String ten;
-    private String ngaysinh;
-    private String Khoa;
+    private String ngaysinh;    
     private String email;
     private String quequan;
 
@@ -21,23 +20,13 @@ public class Person {
     public Person() {
     }
 
-    public Person(String hodem, String ten, String ngaysinh, String Khoa, String email, String quequan) {
+    public Person(String hodem, String ten, String ngaysinh, String email, String quequan) {
         this.hodem = hodem;
         this.ten = ten;
         this.ngaysinh = ngaysinh;
-        this.Khoa = Khoa;
         this.email = email;
         this.quequan = quequan;
     }
-
-    public String getQuequan() {
-        return quequan;
-    }
-
-    public void setQuequan(String quequan) {
-        this.quequan = quequan;
-    }
-
 
     public String getHodem() {
         return hodem;
@@ -63,14 +52,6 @@ public class Person {
         this.ngaysinh = ngaysinh;
     }
 
-    public String getKhoa() {
-        return Khoa;
-    }
-
-    public void setKhoa(String Khoa) {
-        this.Khoa = Khoa;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -79,5 +60,17 @@ public class Person {
         this.email = email;
     }
 
-    
+    public String getQuequan() {
+        return quequan;
+    }
+
+    public void setQuequan(String quequan) {
+        this.quequan = quequan;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" + "hodem=" + hodem + ", ten=" + ten + ", ngaysinh=" + ngaysinh + ", email=" + email + ", quequan=" + quequan + '}';
+    }
+  
 }

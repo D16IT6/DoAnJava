@@ -16,8 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author PC
  */
-public class loginFrm extends javax.swing.JFrame {
-
+public class loginFrm extends javax.swing.JFrame {       
     boolean checkpass = true;
     ButtonGroup br = new ButtonGroup();
 
@@ -26,9 +25,9 @@ public class loginFrm extends javax.swing.JFrame {
         goupCheckox();
         showPass();
         btnShowPass.requestFocus();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);      
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -148,11 +147,6 @@ public class loginFrm extends javax.swing.JFrame {
         cbAdmin.setBackground(new java.awt.Color(204, 204, 255));
         cbAdmin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cbAdmin.setText("Admin");
-        cbAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbAdminActionPerformed(evt);
-            }
-        });
 
         cbSinhvien.setBackground(new java.awt.Color(204, 204, 255));
         cbSinhvien.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -248,8 +242,17 @@ public class loginFrm extends javax.swing.JFrame {
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         String accountname = txtAcountname.getText();
         String password = new String(txtPass.getPassword());
+        int check=0;
+        if(cbAdmin.isSelected())
+        {
+            check=1;
+        }
+        else if(cbSinhvien.isSelected())
+        {
+            check=2;
+        }
         AccountInDB aid = new AccountInDB();
-        boolean ketqua = aid.CheckLogin(accountname, password);
+        boolean ketqua = aid.CheckLogin(accountname, password,check);
         if (accountname.equalsIgnoreCase("AcountName") || password.equalsIgnoreCase("PassWord")) {
             lbThongbao.setText("Bạn chưa nhập tên tài khoản hoặc mật khẩu");
         } else if (cbAdmin.isSelected() == false && cbSinhvien.isSelected() == false) {
@@ -321,10 +324,6 @@ public class loginFrm extends javax.swing.JFrame {
     private void txtAcountnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAcountnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAcountnameActionPerformed
-
-    private void cbAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbAdminActionPerformed
 
     /**
      * @param args the command line arguments
