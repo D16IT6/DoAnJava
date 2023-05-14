@@ -21,7 +21,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author PC
  */
-public class loginFrm extends javax.swing.JFrame {       
+public class loginFrm extends javax.swing.JFrame {
+
     boolean checkpass = true;
     ButtonGroup br = new ButtonGroup();
 
@@ -30,9 +31,9 @@ public class loginFrm extends javax.swing.JFrame {
         goupCheckox();
         showPass();
         btnShowPass.requestFocus();
-        this.setLocationRelativeTo(null);      
+        this.setLocationRelativeTo(null);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -245,6 +246,17 @@ public class loginFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+//        String username = txtAcountname.getText();
+//        String password = new String(txtPass.getPassword());
+//        boolean ok = new AccountInDB().loginUsingHash(username, password);
+//        if (ok) {
+//            JOptionPane.showMessageDialog(null, "ok");
+//
+//        } else {
+//            JOptionPane.showMessageDialog(null, "not ok");
+//
+//        }
+
         String accountname = txtAcountname.getText();
         String password = new String(txtPass.getPassword());
         int check=0;
@@ -336,7 +348,7 @@ public class loginFrm extends javax.swing.JFrame {
     public static void main(String args[]) {
         try {
             UIManager.setLookAndFeel(new FlatMacLightLaf());
-        } catch ( UnsupportedLookAndFeelException e) {
+        } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
         java.awt.EventQueue.invokeLater(new Runnable() {

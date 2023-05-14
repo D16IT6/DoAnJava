@@ -98,9 +98,14 @@ public class RegisterSubjectDB {
             PreparedStatement ps =conn.prepareStatement(sql);
             ps.setString(1, IDStudent);
             ps.setString(2,malophp);
-            int res =ps.executeUpdate();
-            if(res==1){            
+            int res = ps.executeUpdate();
+            if(res == 1){            
                 JOptionPane.showMessageDialog(null,"Đăng Ký Thành Công","Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else 
+            {
+                JOptionPane.showMessageDialog(null,"Lớp đã đầy","Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
             }
             
         } catch (SQLException ex) {

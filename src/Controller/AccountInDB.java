@@ -9,6 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class AccountInDB {
     
@@ -22,7 +25,20 @@ public class AccountInDB {
     public static String getAccountname() {
         return Accountname;
     }
-    
+    public boolean loginUsingHash(String username,String password)
+    {
+        try {
+            String sql = "SELECT MATKHAU FROM dbo.TAIKHOAN WHERE TENTAIKHOAN = ?";
+            PreparedStatement pre = conn.prepareStatement(sql);
+            pre.setString(1, username);
+            ResultSet rs = pre.executeQuery();
+            rs.next();
+            String hashInDB = rs.getString(1);
+            return BCrypt.checkpw(password, hashInDB);
+        } catch (SQLException ex) {
+            return false;
+        }
+    }
     public boolean CheckLogin(String accountname, String password,int check) {
         
         try {

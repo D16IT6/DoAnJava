@@ -10,8 +10,9 @@ import java.util.List;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import javax.swing.JOptionPane;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -47,10 +48,19 @@ public class QuanLyDangKyDB {
         }
         return arrLop;
     }
-//    public static void main(String[] args) {
-//        List<ctLopHP> arra=new QuanLyDangKyDB().showAllLopHP();
-//        for(ctLopHP a:arra){
-//            System.out.println(a.getMaLopHP());
-//        }
-//    }
+    static int iteratorSalt = 11;
+    public boolean dangKy(String username,String password)
+    {
+        
+        try {
+            String hashPassword = BCrypt.hashpw(password, BCrypt.gensalt(iteratorSalt));
+            CallableStatement cs = conn.prepareCall("{call usp_DangKy(?,?)}");
+            cs.setString(1, username);
+            cs.setString(2,hashPassword);
+            int result = cs.executeUpdate();
+            return result > 0;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 }
