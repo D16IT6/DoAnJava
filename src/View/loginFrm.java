@@ -6,11 +6,16 @@ package View;
 
 import Controller.AccountInDB;
 import Model.Acount;
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -329,6 +334,11 @@ public class loginFrm extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+        } catch ( UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new loginFrm().setVisible(true);

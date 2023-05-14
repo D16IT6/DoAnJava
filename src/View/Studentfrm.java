@@ -4,25 +4,23 @@
  */
 package View;
 
+import Controller.Sort.SortByName;
 import Controller.StudentDB;
 import Model.Student;
-import com.sun.net.httpserver.Authenticator;
 import java.awt.Component;
 import java.awt.KeyboardFocusManager;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author PC
  */
 public class Studentfrm extends javax.swing.JPanel {
+
     Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
     ButtonGroup rb1;
     ButtonGroup rb2;
@@ -33,7 +31,7 @@ public class Studentfrm extends javax.swing.JPanel {
         initComponents();
         groupRb();
         model = (DefaultTableModel) tbStudent.getModel();
-        showData();
+        showData(new StudentDB().showAll());
         showClass();
     }
 
@@ -48,15 +46,15 @@ public class Studentfrm extends javax.swing.JPanel {
 
         panelALL = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        txtNameSubjectSearch = new javax.swing.JTextField();
-        rbSearchSubjectByName = new javax.swing.JRadioButton();
-        btnSearchSubject = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        txtSearch = new javax.swing.JTextField();
+        rbSearchByName = new javax.swing.JRadioButton();
+        btnSearch = new javax.swing.JButton();
+        rbSearchByClass = new javax.swing.JRadioButton();
+        rbSearchById = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
-        rbSortSubjectNumOfLesDesc = new javax.swing.JRadioButton();
-        rbSortSubjectNumOfLesASC = new javax.swing.JRadioButton();
-        btnSort1 = new javax.swing.JButton();
+        rbSortByNameASC = new javax.swing.JRadioButton();
+        rbSortByNameDESC = new javax.swing.JRadioButton();
+        btnSort = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbStudent = new javax.swing.JTable();
@@ -88,25 +86,25 @@ public class Studentfrm extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(235, 253, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Tìm kiếm sinh viên", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        rbSearchSubjectByName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        rbSearchSubjectByName.setText("Theo tên");
+        rbSearchByName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbSearchByName.setText("Theo tên");
 
-        btnSearchSubject.setBackground(new java.awt.Color(51, 51, 51));
-        btnSearchSubject.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnSearchSubject.setForeground(new java.awt.Color(255, 255, 255));
-        btnSearchSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
-        btnSearchSubject.setText("Tìm kiếm");
-        btnSearchSubject.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setBackground(new java.awt.Color(51, 51, 51));
+        btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
+        btnSearch.setText("Tìm kiếm");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchSubjectActionPerformed(evt);
+                btnSearchActionPerformed(evt);
             }
         });
 
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jRadioButton1.setText("Theo lớp");
+        rbSearchByClass.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbSearchByClass.setText("Theo lớp");
 
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jRadioButton2.setText("Theo mã");
+        rbSearchById.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbSearchById.setText("Theo mã");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -117,49 +115,49 @@ public class Studentfrm extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rbSearchSubjectByName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rbSearchByName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rbSearchByClass, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rbSearchById, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
-                        .addComponent(txtNameSubjectSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(178, 178, 178)
-                        .addComponent(btnSearchSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(1, 1, 1)
-                .addComponent(rbSearchSubjectByName)
+                .addComponent(rbSearchByName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(txtNameSubjectSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rbSearchByClass)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(rbSearchById)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSearchSubject)
+                .addComponent(btnSearch)
                 .addGap(15, 15, 15))
         );
 
         jPanel5.setBackground(new java.awt.Color(235, 253, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Sắp xếp danh sách sinh viên", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        rbSortSubjectNumOfLesDesc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        rbSortSubjectNumOfLesDesc.setText("Theo tên từ A-Z");
+        rbSortByNameASC.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbSortByNameASC.setText("Theo tên từ A-Z");
 
-        rbSortSubjectNumOfLesASC.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        rbSortSubjectNumOfLesASC.setText("theo tên từ Z-A");
+        rbSortByNameDESC.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        rbSortByNameDESC.setText("theo tên từ Z-A");
 
-        btnSort1.setBackground(new java.awt.Color(51, 51, 51));
-        btnSort1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnSort1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSort1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sort.png"))); // NOI18N
-        btnSort1.setText("Sắp xếp");
-        btnSort1.addActionListener(new java.awt.event.ActionListener() {
+        btnSort.setBackground(new java.awt.Color(51, 51, 51));
+        btnSort.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSort.setForeground(new java.awt.Color(255, 255, 255));
+        btnSort.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sort.png"))); // NOI18N
+        btnSort.setText("Sắp xếp");
+        btnSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSort1ActionPerformed(evt);
+                btnSortActionPerformed(evt);
             }
         });
 
@@ -169,13 +167,13 @@ public class Studentfrm extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(rbSortSubjectNumOfLesDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(rbSortSubjectNumOfLesASC, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rbSortByNameASC, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(rbSortByNameDESC, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(179, 179, 179)
-                .addComponent(btnSort1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSort, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -183,10 +181,10 @@ public class Studentfrm extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbSortSubjectNumOfLesDesc)
-                    .addComponent(rbSortSubjectNumOfLesASC))
+                    .addComponent(rbSortByNameASC)
+                    .addComponent(rbSortByNameDESC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(btnSort1)
+                .addComponent(btnSort)
                 .addContainerGap())
         );
 
@@ -245,13 +243,10 @@ public class Studentfrm extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(422, 422, 422)
                 .addComponent(btnReset)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(405, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(358, 358, 358)
@@ -450,7 +445,7 @@ public class Studentfrm extends javax.swing.JPanel {
                     .addGroup(panelALLLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -467,63 +462,79 @@ public class Studentfrm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSearchSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSubjectActionPerformed
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        if (rbSearchByClass.isSelected() == true) {
 
-    }//GEN-LAST:event_btnSearchSubjectActionPerformed
+        } else if (rbSearchById.isSelected() == true) {
 
-    private void btnSort1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSort1ActionPerformed
+        } else if (rbSearchByName.isSelected() == true) {
 
+        } else {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn tiêu chí tìm kiếm !!!");
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
 
-    }//GEN-LAST:event_btnSort1ActionPerformed
+    private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed
+        int check = 0;
+        if (rbSortByNameASC.isSelected()) {
+            check = 1;
+        } else if (rbSortByNameDESC.isSelected()) {
+            check = 2;
+        } else {
+            JOptionPane.showMessageDialog(null, "vui lòng chọn tiêu chí sắp xếp");
+            return;
+        }
+        showData(new StudentDB().showAll());
+        showData(new SortByName().sort(tbStudent, check));
+    }//GEN-LAST:event_btnSortActionPerformed
 
     private void tbStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbStudentMouseClicked
-                if(tbStudent.getSelectedRow()>=0){
-                    int rowcheck=tbStudent.getSelectedRow();
-                    txtMasv.setText(tbStudent.getValueAt(rowcheck,0)+"");                    
-                    String name=tbStudent.getValueAt(rowcheck, 1)+"";
-                    String[] catchuoi=name.split(" ");
-                    String hodem="";
-                    for(int i=0;i<catchuoi.length-1;i++){
-                         hodem =hodem+catchuoi[i]+" ";
-                    }                  
-                    String ten =catchuoi[catchuoi.length-1];
-                    txtHoDem.setText(hodem);
-                    txtTen.setText(ten);                  
-                    txtNgaySinh.setText(tbStudent.getValueAt(rowcheck, 2)+"");
-                    txtQueQuan.setText(tbStudent.getValueAt(rowcheck, 3)+"");
-                    txtEmail.setText(tbStudent.getValueAt(rowcheck, 4)+"");
-                    cbClass.setSelectedItem(tbStudent.getValueAt(rowcheck, 5)+"");
-                }
+        if (tbStudent.getSelectedRow() >= 0) {
+            int rowcheck = tbStudent.getSelectedRow();
+            txtMasv.setText(tbStudent.getValueAt(rowcheck, 0) + "");
+            String name = tbStudent.getValueAt(rowcheck, 1) + "";
+            String[] catchuoi = name.split(" ");
+            String hodem = "";
+            for (int i = 0; i < catchuoi.length - 1; i++) {
+                hodem = hodem + catchuoi[i] + " ";
+            }
+            String ten = catchuoi[catchuoi.length - 1];
+            txtHoDem.setText(hodem);
+            txtTen.setText(ten);
+            txtNgaySinh.setText(tbStudent.getValueAt(rowcheck, 2) + "");
+            txtQueQuan.setText(tbStudent.getValueAt(rowcheck, 3) + "");
+            txtEmail.setText(tbStudent.getValueAt(rowcheck, 4) + "");
+            cbClass.setSelectedItem(tbStudent.getValueAt(rowcheck, 5) + "");
+        }
     }//GEN-LAST:event_tbStudentMouseClicked
 
     private void btnDeleteSubject1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSubject1ActionPerformed
-        
+
     }//GEN-LAST:event_btnDeleteSubject1ActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-
-
+        showData(new StudentDB().showAll());
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudentActionPerformed
-            String masv =txtMasv.getText();
-            Student sv =new Student(masv);
-            new StudentDB().delete(sv);
-            showData();
-            
+        String masv = txtMasv.getText();
+        Student sv = new Student(masv);
+        new StudentDB().delete(sv);
+        showData(new StudentDB().showAll());
+
     }//GEN-LAST:event_btnDeleteStudentActionPerformed
 
     private void btnEditStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditStudentActionPerformed
-            Student sv =getStudent();
-            new StudentDB().set(sv);
-            showData();
+        Student sv = getStudent();
+        new StudentDB().set(sv);
+        showData(new StudentDB().showAll());
     }//GEN-LAST:event_btnEditStudentActionPerformed
 
     private void btnAddNewStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewStudentActionPerformed
-            Student sv =getStudent();
-        StudentDB listsv=new StudentDB();
-        listsv.add(sv);      
-        showData();
+        Student sv = getStudent();
+        StudentDB listsv = new StudentDB();
+        listsv.add(sv);
+        showData(new StudentDB().showAll());
     }//GEN-LAST:event_btnAddNewStudentActionPerformed
 
     private void txtMasvKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMasvKeyPressed
@@ -545,8 +556,8 @@ public class Studentfrm extends javax.swing.JPanel {
     private javax.swing.JButton btnDeleteSubject1;
     private javax.swing.JButton btnEditStudent;
     private javax.swing.JButton btnReset;
-    private javax.swing.JButton btnSearchSubject;
-    private javax.swing.JButton btnSort1;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnSort;
     private javax.swing.JComboBox<String> cbClass;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -559,30 +570,30 @@ public class Studentfrm extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel panelALL;
-    private javax.swing.JRadioButton rbSearchSubjectByName;
-    private javax.swing.JRadioButton rbSortSubjectNumOfLesASC;
-    private javax.swing.JRadioButton rbSortSubjectNumOfLesDesc;
+    private javax.swing.JRadioButton rbSearchByClass;
+    private javax.swing.JRadioButton rbSearchById;
+    private javax.swing.JRadioButton rbSearchByName;
+    private javax.swing.JRadioButton rbSortByNameASC;
+    private javax.swing.JRadioButton rbSortByNameDESC;
     private javax.swing.JTable tbStudent;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtHoDem;
     private javax.swing.JTextField txtMasv;
-    private javax.swing.JTextField txtNameSubjectSearch;
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtQueQuan;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTen;
     // End of variables declaration//GEN-END:variables
     private void groupRb() {
-//        rb1 = new ButtonGroup();
-//        rb2 = new ButtonGroup();
-//        rb1.add(rbSortByNameASC);
-//        rb1.add(rbSortByNameDESC);
-//        rb2.add(rbSearchByAdress);
-//        rb2.add(rbSearchById);
-//        rb2.add(rbSearchByName);
+        rb1 = new ButtonGroup();
+        rb2 = new ButtonGroup();
+        rb1.add(rbSortByNameASC);
+        rb1.add(rbSortByNameDESC);
+        rb2.add(rbSearchByClass);
+        rb2.add(rbSearchById);
+        rb2.add(rbSearchByName);
     }
 
     private void deleteDataTable() {
@@ -591,30 +602,31 @@ public class Studentfrm extends javax.swing.JPanel {
             tbStudent.repaint();
         }
     }
-    private void showData() {
-        List<Student> list=new StudentDB().showAll();
-        model.setRowCount(0);
+
+    private void showData(List<Student> list) {
+        deleteDataTable();
         for (Student st : list) {
-            model.addRow( new Object[]{
-                st.getMasv(),st.getHodem()+" "+st.getTen(),st.getNgaysinh(),st.getQuequan(),st.getEmail(),st.getMaLop()
-            });            
+            model.addRow(new Object[]{
+                st.getMasv(), st.getHodem() + " " + st.getTen(), st.getNgaysinh(), st.getQuequan(), st.getEmail(), st.getMaLop()
+            });
         }
     }
-    private Student getStudent(){
-        String maSV=txtMasv.getText();
-        String hoDem=txtHoDem.getText();
-        String ten=txtTen.getText();
-        String ngaySinh=txtNgaySinh.getText();
-        String queQuan=txtQueQuan.getText();
-        String Email=txtEmail.getText();
-        String maLop=cbClass.getSelectedItem()+"";
-        Student sv =new Student(maSV, maLop, hoDem, ten, ngaySinh, Email, queQuan);
+
+    private Student getStudent() {
+        String maSV = txtMasv.getText();
+        String hoDem = txtHoDem.getText();
+        String ten = txtTen.getText();
+        String ngaySinh = txtNgaySinh.getText();
+        String queQuan = txtQueQuan.getText();
+        String Email = txtEmail.getText();
+        String maLop = cbClass.getSelectedItem() + "";
+        Student sv = new Student(maSV, maLop, hoDem, ten, ngaySinh, Email, queQuan);
         return sv;
     }
-    private void showClass(){
-        List<String> arrClass= new StudentDB().ShowAllClass();
-        for(String lop : arrClass )
-        {
+
+    private void showClass() {
+        List<String> arrClass = new StudentDB().ShowAllClass();
+        for (String lop : arrClass) {
             cbClass.addItem(lop);
         }
     }

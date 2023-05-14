@@ -17,7 +17,7 @@ public class Student extends Person{
 
     @Override
     public String toString() {        
-        return "\nSinh Viên " + "Mã Sinh Viên:" + masv + " Mã Lớp:" + maLop ;
+        return "\nSinh Viên " + "Mã Sinh Viên:" + masv + "Tên "+super.getTen()+" Mã Lớp:" + maLop ;
     }
 
     public Student(String masv, String maLop, String hodem, String ten, String ngaysinh, String email, String quequan) {
