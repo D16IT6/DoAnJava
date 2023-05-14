@@ -36,6 +36,8 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
         btnHuyDangKy.setEnabled(false);
         lbMaLopDK.setVisible(false);
         lbMaLopHuyDK.setVisible(false);
+        lbsoluongsinhvien.setVisible(false);
+        lbsoluongsvdk.setVisible(false);
         cbMonhoc.addItemListener(new ItemListener(){
             public void itemStateChanged(ItemEvent event) {
                 if (event.getStateChange() == ItemEvent.SELECTED) {                  
@@ -71,6 +73,8 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
         cbMonhoc = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         lbMaLopDK = new javax.swing.JLabel();
+        lbsoluongsvdk = new javax.swing.JLabel();
+        lbsoluongsinhvien = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
@@ -217,7 +221,11 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
                         .addComponent(btnDangky, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(117, 117, 117)
                         .addComponent(lbMaLopDK, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 243, Short.MAX_VALUE)))
+                        .addGap(32, 32, 32)
+                        .addComponent(lbsoluongsvdk)
+                        .addGap(38, 38, 38)
+                        .addComponent(lbsoluongsinhvien)
+                        .addGap(0, 168, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDangKyLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -228,7 +236,7 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
         );
         PanelDangKyLayout.setVerticalGroup(
             PanelDangKyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelDangKyLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDangKyLayout.createSequentialGroup()
                 .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(PanelDangKyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbMonhoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,9 +244,13 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PanelDangKyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnDangky, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbMaLopDK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PanelDangKyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDangKyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnDangky, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbMaLopDK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PanelDangKyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbsoluongsvdk)
+                        .addComponent(lbsoluongsinhvien)))
                 .addContainerGap())
         );
 
@@ -292,8 +304,8 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-            .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,7 +404,7 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -432,17 +444,35 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
 
     private void tableDangKyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDangKyMouseClicked
         btnDangky.setEnabled(true);
+      
         int rowcheck=tableDangKy.getSelectedRow();       
         if(rowcheck>=0){
             lbMaLopDK.setText(tableModelDangKy.getValueAt(rowcheck, 0)+"");
+             String doisosinhvien =  tableDangKy.getValueAt(rowcheck, 5)+"";       
+            String[] catchuoi=doisosinhvien.split("/");                                 
+            String soluongsvdk =catchuoi[0];
+            String soluongsv =catchuoi[catchuoi.length-1];
+            lbsoluongsvdk.setText(soluongsvdk);
+            lbsoluongsinhvien.setText(soluongsv);
         }
+        
+        
+            
     }//GEN-LAST:event_tableDangKyMouseClicked
 
     private void btnDangkyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangkyActionPerformed
-        RegisterSubjectDB dk =new RegisterSubjectDB();
-        dk.DangKy(lbMaLopDK.getText());
-        showClassChuaDangKy();
-        showClassDaDangKy();
+        int soluongsvdk =Integer.parseInt(lbsoluongsvdk.getText());
+        int soluongsv =Integer.parseInt(lbsoluongsinhvien.getText());
+        if(soluongsvdk==soluongsv){
+            JOptionPane.showMessageDialog(null, "Lớp đã đầy học sinh");
+        }
+        else{
+            RegisterSubjectDB dk =new RegisterSubjectDB();
+            dk.DangKy(lbMaLopDK.getText());
+            showClassChuaDangKy();
+            showClassDaDangKy();
+        }
+        
     }//GEN-LAST:event_btnDangkyActionPerformed
 
     private void btnHuyDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyDangKyActionPerformed
@@ -532,6 +562,8 @@ public class DangKyMonHocFrm extends javax.swing.JFrame {
     private javax.swing.JLabel lbMaLopHuyDK;
     private javax.swing.JLabel lbMaSV;
     private javax.swing.JLabel lbName;
+    private javax.swing.JLabel lbsoluongsinhvien;
+    private javax.swing.JLabel lbsoluongsvdk;
     private javax.swing.JTable tableDangKy;
     private javax.swing.JTable tableHuyDangKy;
     // End of variables declaration//GEN-END:variables

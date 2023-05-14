@@ -114,26 +114,10 @@ public class lopHPDAO {
     public List<LopHP> Search(String searchContent, int check) {
         try {
             Connection conn = ConnectSql.Connect.connectionDatabase();
-            String checkSearch;
-            switch (check) {
-                case 0:
-                    checkSearch = "MALOPHP";
-                    break;
-                case 1:
-                    checkSearch = "MAGV";
-                    break;
-                case 2:
-                    checkSearch = "MAMH";
-                    break;
-                default:
-                    throw new AssertionError();
-            }
-            String timKiem = "SELECT * FROM LOPHOCPHAN WHERE " + checkSearch + " =?";
-            PreparedStatement prs = conn.prepareStatement(timKiem);
-            //prs.setString(1, checkSearch);
+            String timKiem = "EXEC TIMKIEMLOPHP "+check+",?";
+            PreparedStatement prs = conn.prepareStatement(timKiem);           
             prs.setString(1, searchContent);
-            ResultSet rs = prs.executeQuery();
-            System.out.println(timKiem);
+            ResultSet rs = prs.executeQuery();          
             while (rs.next()) {
                 LopHP lp = new LopHP();
                 lp.setMaLopHP(rs.getString("MALOPHP"));

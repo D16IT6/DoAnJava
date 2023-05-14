@@ -222,7 +222,7 @@ public class Quanlylophoc1 extends javax.swing.JPanel {
 
         jLabel8.setText("Tìm Kiếm");
 
-        cbSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã Lớp", "Tên Giang Viên", "Mã Môn Học", " " }));
+        cbSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên Lớp", "Tên Môn Học", "Tên Giảng viên", " " }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -439,7 +439,7 @@ public class Quanlylophoc1 extends javax.swing.JPanel {
                     for(int i=0;i<catchuoi.length-1;i++){
                          hodem =hodem+catchuoi[i]+" ";
                     }                  
-                    String ten =catchuoi[catchuoi.length-1];
+            String ten =catchuoi[catchuoi.length-1];
             MyCombobox gv =new lopHPDAO().layMaGV(hodem, ten);
             cbbModelGV.setSelectedItem(gv);
             String tenmh=tableModel.getValueAt(rowcheck, 3)+"";
@@ -487,8 +487,11 @@ public class Quanlylophoc1 extends javax.swing.JPanel {
         List<LopHP> lopList = new lopHPDAO().Search(searchContent,check);
         tableModel.setRowCount(0);
         for (LopHP lop : lopList) {
-            tableModel.addRow(new Object[]{lop.getMaLopHP(), lop.getTenLop(),
-                lop.getMaGV(),lop.getMaMH(), lop.getSoLuongSV(), lop.getNgayBD(), lop.getNgayKT()});
+            try {
+                tableModel.addRow(new Object[]{lop.getMaLopHP(), lop.getTenLop(),new lopHPDAO().layTenGV(lop.getMaGV()),new lopHPDAO().layTenMH(lop.getMaMH()), lop.getSoLuongSV(), lop.getNgayBD(), lop.getNgayKT()});
+            } catch (SQLException ex) {
+                Logger.getLogger(Quanlylophoc1.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

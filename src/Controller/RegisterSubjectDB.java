@@ -63,7 +63,7 @@ public class RegisterSubjectDB {
                 lp.setTenMH(rs.getString("TENMH"));                                        
                 lp.setTenGV(rs.getString("HOVATENGIANGVIEN"));
                 lp.setSoTiet(rs.getInt("SOTIET"));
-                lp.setSoLuongSV(rs.getInt("SOLUONGSV"));               
+                lp.setSoLuongSV(rs.getString("SOLUONG"));               
                 arrLopHP.add(lp);
             }                
         } catch (SQLException ex) {
@@ -84,8 +84,7 @@ public class RegisterSubjectDB {
                 lp.setTenLopHP(rs.getString("TENLOP"));   
                 lp.setTenMH(rs.getString("TENMH"));                                        
                 lp.setTenGV(rs.getString("HOVATENGIANGVIEN"));
-                lp.setSoTiet(rs.getInt("SOTIET"));
-                lp.setSoLuongSV(rs.getInt("SOLUONGSV")); 
+                lp.setSoTiet(rs.getInt("SOTIET"));              
                 arrLopHP.add(lp);
             }                
         } catch (SQLException ex) {

@@ -18,9 +18,9 @@ public class ctLopHP {
     private String tenSV;
     private String tenMH;
     private int soTiet;
-    private int soLuongSV;
+    private String soLuongSV;
 
-    public ctLopHP(String maLopHP, String MaSV, String maGV, String maMH, String tenLopHP, String tenGV, String tenSV, String tenMH, int soTiet, int soLuongSV) {
+    public ctLopHP(String maLopHP, String MaSV, String maGV, String maMH, String tenLopHP, String tenGV, String tenSV, String tenMH, int soTiet, String soLuongSV) {
         this.maLopHP = maLopHP;
         this.MaSV = MaSV;
         this.maGV = maGV;
@@ -108,11 +108,11 @@ public class ctLopHP {
         this.soTiet = soTiet;
     }
 
-    public int getSoLuongSV() {
+    public String getSoLuongSV() {
         return soLuongSV;
     }
 
-    public void setSoLuongSV(int soLuongSV) {
+    public void setSoLuongSV(String soLuongSV) {
         this.soLuongSV = soLuongSV;
     }
 
@@ -120,5 +120,7 @@ public class ctLopHP {
     public String toString() {
         return "ctLopHP{" + "maLopHP=" + maLopHP + ", MaSV=" + MaSV + ", maGV=" + maGV + ", maMH=" + maMH + ", tenLopHP=" + tenLopHP + ", tenGV=" + tenGV + ", tenSV=" + tenSV + ", tenMH=" + tenMH + ", soTiet=" + soTiet + ", soLuongSV=" + soLuongSV + '}';
     }
+
+    
     
 }
