@@ -158,7 +158,7 @@ public class SubjectDB implements IDataDB<Subject> {
         return arrSubject;
     }
 //    public static void main(String[] args) {
-//        List<Subject> list=new SubjectDB().SearchByNumLess("50","75");
+//        List<Subject> list=new SubjectDB().SearchByName("lap trinh c");
 //        for(Subject sub:list){
 //            System.out.println(sub);
 //        }

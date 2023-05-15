@@ -246,17 +246,6 @@ public class loginFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-//        String username = txtAcountname.getText();
-//        String password = new String(txtPass.getPassword());
-//        boolean ok = new AccountInDB().loginUsingHash(username, password);
-//        if (ok) {
-//            JOptionPane.showMessageDialog(null, "ok");
-//
-//        } else {
-//            JOptionPane.showMessageDialog(null, "not ok");
-//
-//        }
-
         String accountname = txtAcountname.getText();
         String password = new String(txtPass.getPassword());
         int check=0;
@@ -269,7 +258,7 @@ public class loginFrm extends javax.swing.JFrame {
             check=2;
         }
         AccountInDB aid = new AccountInDB();
-        boolean ketqua = aid.CheckLogin(accountname, password,check);
+        boolean ketqua = aid.loginUsingHash(accountname, password);
         if (accountname.equalsIgnoreCase("AcountName") || password.equalsIgnoreCase("PassWord")) {
             lbThongbao.setText("Bạn chưa nhập tên tài khoản hoặc mật khẩu");
         } else if (cbAdmin.isSelected() == false && cbSinhvien.isSelected() == false) {

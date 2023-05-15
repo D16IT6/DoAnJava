@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,18 +23,85 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Studentfrm extends javax.swing.JPanel {
 
+    Thread trCheck, trIsnert, trDelete;
     Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
     ButtonGroup rb1;
     ButtonGroup rb2;
     DefaultTableModel model;
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-
+    
     public Studentfrm() {
         initComponents();
         groupRb();
         model = (DefaultTableModel) tbStudent.getModel();
         showData(new StudentDB().showAll());
         showClass();
+        txtMasv.setEditable(false);
+        search_Action();
+    }
+    
+    private void search_Action() {
+        txtSearch.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (!check()) {
+                    return;
+                }
+                if (txtSearch.getText().length() > 0) {
+                    trIsnert = new Thread(()
+                            -> search()
+                    );
+                    trIsnert.start();
+                }
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (!check()) {
+                    return;
+                }
+                if (txtSearch.getText().length() > 0) {
+                    trDelete = new Thread(()
+                            -> search()
+                    );
+                    trDelete.start();
+                } else if (txtSearch.getText().length() == 0) {
+                    trDelete = new Thread(()
+                            -> showData(new StudentDB().showAll())
+                    );
+                    trDelete.start();
+                }
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                
+            }
+        });
+    }
+    
+    private boolean check() {
+        if (rbSearchByClass.isSelected() == false && rbSearchById.isSelected() == false && rbSearchByName.isSelected() == false) {
+            trCheck = new Thread(() -> {
+                txtSearch.setText("");
+                JOptionPane.showMessageDialog(null, "Vui lòng chọn tiêu chí tìm kiếm !!!");
+            });
+            trCheck.start();
+            return false;
+        }
+        return true;
+    }
+    
+    private void search() {
+        int check = 0;
+        if (rbSearchByClass.isSelected() == true) {
+            check = 1;
+        } else if (rbSearchById.isSelected() == true) {
+            check = 2;
+        } else if (rbSearchByName.isSelected() == true) {
+            check = 3;
+        }
+        showData(new StudentDB().SearchByName(txtSearch.getText().trim() + "," + check));
     }
 
     /**
@@ -48,7 +117,6 @@ public class Studentfrm extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         txtSearch = new javax.swing.JTextField();
         rbSearchByName = new javax.swing.JRadioButton();
-        btnSearch = new javax.swing.JButton();
         rbSearchByClass = new javax.swing.JRadioButton();
         rbSearchById = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
@@ -61,9 +129,7 @@ public class Studentfrm extends javax.swing.JPanel {
         btnDeleteSubject1 = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        btnDeleteStudent = new javax.swing.JButton();
         btnEditStudent = new javax.swing.JButton();
-        btnAddNewStudent = new javax.swing.JButton();
         txtMasv = new javax.swing.JTextField();
         txtHoDem = new javax.swing.JTextField();
         txtTen = new javax.swing.JTextField();
@@ -74,7 +140,7 @@ public class Studentfrm extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        Khoa = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -89,17 +155,6 @@ public class Studentfrm extends javax.swing.JPanel {
         rbSearchByName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rbSearchByName.setText("Theo tên");
 
-        btnSearch.setBackground(new java.awt.Color(51, 51, 51));
-        btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/search.png"))); // NOI18N
-        btnSearch.setText("Tìm kiếm");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-
         rbSearchByClass.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         rbSearchByClass.setText("Theo lớp");
 
@@ -111,19 +166,14 @@ public class Studentfrm extends javax.swing.JPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rbSearchByName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rbSearchByClass, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rbSearchById, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rbSearchByName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbSearchByClass, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbSearchById, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,9 +186,7 @@ public class Studentfrm extends javax.swing.JPanel {
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbSearchById)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSearch)
-                .addGap(15, 15, 15))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(235, 253, 255));
@@ -168,7 +216,7 @@ public class Studentfrm extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(rbSortByNameASC, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(rbSortByNameDESC, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
             .addGroup(jPanel5Layout.createSequentialGroup()
@@ -201,7 +249,7 @@ public class Studentfrm extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -270,54 +318,14 @@ public class Studentfrm extends javax.swing.JPanel {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Thông tin sinh viên", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         jPanel3.setToolTipText("");
 
-        btnDeleteStudent.setBackground(new java.awt.Color(51, 51, 51));
-        btnDeleteStudent.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnDeleteStudent.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeleteStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delete.png"))); // NOI18N
-        btnDeleteStudent.setText("Xóa");
-        btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteStudentActionPerformed(evt);
-            }
-        });
-
         btnEditStudent.setBackground(new java.awt.Color(51, 51, 51));
         btnEditStudent.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnEditStudent.setForeground(new java.awt.Color(255, 255, 255));
         btnEditStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/set.png"))); // NOI18N
-        btnEditStudent.setText("Sửa ");
+        btnEditStudent.setText("Cập nhât");
         btnEditStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditStudentActionPerformed(evt);
-            }
-        });
-
-        btnAddNewStudent.setBackground(new java.awt.Color(51, 51, 51));
-        btnAddNewStudent.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnAddNewStudent.setForeground(new java.awt.Color(255, 255, 255));
-        btnAddNewStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add_16px.png"))); // NOI18N
-        btnAddNewStudent.setText("Thêm");
-        btnAddNewStudent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddNewStudentActionPerformed(evt);
-            }
-        });
-
-        txtMasv.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtMasvKeyPressed(evt);
-            }
-        });
-
-        cbClass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbClassActionPerformed(evt);
-            }
-        });
-
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
             }
         });
 
@@ -327,7 +335,7 @@ public class Studentfrm extends javax.swing.JPanel {
 
         jLabel3.setText("Tên ");
 
-        jLabel4.setText("Ngày Sinh");
+        Khoa.setText("Ngày Sinh");
 
         jLabel5.setText("Quê Quán");
 
@@ -347,7 +355,7 @@ public class Studentfrm extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtQueQuan, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(Khoa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
@@ -360,7 +368,7 @@ public class Studentfrm extends javax.swing.JPanel {
                         .addComponent(txtHoDem, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                         .addComponent(txtMasv, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,15 +378,11 @@ public class Studentfrm extends javax.swing.JPanel {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                             .addComponent(cbClass, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(btnAddNewStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btnEditStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btnDeleteStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(149, 149, 149)
+                .addComponent(btnEditStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,7 +402,7 @@ public class Studentfrm extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(Khoa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtQueQuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -412,10 +416,7 @@ public class Studentfrm extends javax.swing.JPanel {
                     .addComponent(cbClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDeleteStudent)
-                    .addComponent(btnEditStudent)
-                    .addComponent(btnAddNewStudent))
+                .addComponent(btnEditStudent)
                 .addContainerGap())
         );
 
@@ -445,7 +446,7 @@ public class Studentfrm extends javax.swing.JPanel {
                     .addGroup(panelALLLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -462,18 +463,6 @@ public class Studentfrm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        if (rbSearchByClass.isSelected() == true) {
-
-        } else if (rbSearchById.isSelected() == true) {
-
-        } else if (rbSearchByName.isSelected() == true) {
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn tiêu chí tìm kiếm !!!");
-        }
-    }//GEN-LAST:event_btnSearchActionPerformed
-
     private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed
         int check = 0;
         if (rbSortByNameASC.isSelected()) {
@@ -484,8 +473,8 @@ public class Studentfrm extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "vui lòng chọn tiêu chí sắp xếp");
             return;
         }
-        showData(new StudentDB().showAll());
-        showData(new SortByName().sort(tbStudent, check));
+        List<Student> list = new SortByName().sort(tbStudent, check);
+        showData(list);
     }//GEN-LAST:event_btnSortActionPerformed
 
     private void tbStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbStudentMouseClicked
@@ -516,53 +505,23 @@ public class Studentfrm extends javax.swing.JPanel {
         showData(new StudentDB().showAll());
     }//GEN-LAST:event_btnResetActionPerformed
 
-    private void btnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudentActionPerformed
-        String masv = txtMasv.getText();
-        Student sv = new Student(masv);
-        new StudentDB().delete(sv);
-        showData(new StudentDB().showAll());
-
-    }//GEN-LAST:event_btnDeleteStudentActionPerformed
-
     private void btnEditStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditStudentActionPerformed
         Student sv = getStudent();
         new StudentDB().set(sv);
         showData(new StudentDB().showAll());
     }//GEN-LAST:event_btnEditStudentActionPerformed
 
-    private void btnAddNewStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewStudentActionPerformed
-        Student sv = getStudent();
-        StudentDB listsv = new StudentDB();
-        listsv.add(sv);
-        showData(new StudentDB().showAll());
-    }//GEN-LAST:event_btnAddNewStudentActionPerformed
-
-    private void txtMasvKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMasvKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMasvKeyPressed
-
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
-
-    private void cbClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbClassActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddNewStudent;
-    private javax.swing.JButton btnDeleteStudent;
+    private javax.swing.JLabel Khoa;
     private javax.swing.JButton btnDeleteSubject1;
     private javax.swing.JButton btnEditStudent;
     private javax.swing.JButton btnReset;
-    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSort;
     private javax.swing.JComboBox<String> cbClass;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -595,14 +554,16 @@ public class Studentfrm extends javax.swing.JPanel {
         rb2.add(rbSearchById);
         rb2.add(rbSearchByName);
     }
-
+    
     private void deleteDataTable() {
-        for (int i = tbStudent.getRowCount() - 1; i >= 0; i--) {
-            model.removeRow(i);
-            tbStudent.repaint();
+        if (tbStudent.getRowCount() > 0) {
+            for (int i = tbStudent.getRowCount() - 1; i >= 0; i--) {
+                model.removeRow(i);
+                tbStudent.repaint();
+            }
         }
     }
-
+    
     private void showData(List<Student> list) {
         deleteDataTable();
         for (Student st : list) {
@@ -611,7 +572,7 @@ public class Studentfrm extends javax.swing.JPanel {
             });
         }
     }
-
+    
     private Student getStudent() {
         String maSV = txtMasv.getText();
         String hoDem = txtHoDem.getText();
@@ -623,7 +584,7 @@ public class Studentfrm extends javax.swing.JPanel {
         Student sv = new Student(maSV, maLop, hoDem, ten, ngaySinh, Email, queQuan);
         return sv;
     }
-
+    
     private void showClass() {
         List<String> arrClass = new StudentDB().ShowAllClass();
         for (String lop : arrClass) {

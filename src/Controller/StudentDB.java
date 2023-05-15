@@ -110,28 +110,36 @@ public class StudentDB implements IDataDB<Student> {
 
     @Override
     public List<Student> SearchByName(String x) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String[]arr=x.split(",");
+            String sql="";
+            if(arr[1].equals("1")){
+                sql="SELECT * FROM SINHVIEN WHERE MALOP like CONCAT('%',?,'%')";
+            }else if(arr[1].equals("2")){
+                sql = "SELECT * FROM SINHVIEN WHERE MASV like CONCAT('%',?,'%')";
+            }else{
+                sql="SELECT * FROM SINHVIEN WHERE TEN like CONCAT('%',?,'%')";
+            }
+            PreparedStatement prs=conn.prepareStatement(sql);
+            prs.setString(1,arr[0]);
+            ResultSet rs=prs.executeQuery();
+            while(rs.next()){
+                Student sv = new Student();
+                sv.setMasv(rs.getString("MASV"));
+                sv.setHodem(rs.getString("HODEM"));
+                sv.setTen(rs.getString("TEN"));
+                sv.setNgaysinh(rs.getString("NGAYSINH"));
+                sv.setQuequan(rs.getString("QUEQUAN"));
+                sv.setEmail(rs.getString("EMAIL"));
+                sv.setMaLop(rs.getString("MALOP"));  
+                listStudent.add(sv);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listStudent;
     }
 
-    public Student SearchByID(String id) {
-
-        return null;
-
-    }
-
-    public List<Student> SearchByAddress(String address) {
-
-        return null;
-
-    }
-
-    public List<Student> SortByNameAsc() {
-        return null;
-    }
-
-    public List<Student> SortByNameDesc() {
-        return null;
-    }
     public List<String>ShowAllClass() {
         String sql ="SELECT MALOP  FROM LOP ";  
         List<String> arrClass=new ArrayList<>();
@@ -146,11 +154,11 @@ public class StudentDB implements IDataDB<Student> {
         }
         return arrClass;
     }
-//    public static void main(String[] args) {
-//        List<String> arr=new StudentDB().ShowAllClass();
-//        for(String lop : arr )
-//        {
-//            System.out.println(lop);
-//        }
-//    }
+    public static void main(String[] args) {
+        List<Student> arr=new StudentDB().SearchByName("t,3");
+        for(Student lop : arr )
+        {
+            System.out.println(lop);
+        }
+    }
 }

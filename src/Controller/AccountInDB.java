@@ -28,7 +28,7 @@ public class AccountInDB {
     public boolean loginUsingHash(String username,String password)
     {
         try {
-            String sql = "SELECT MATKHAU FROM dbo.TAIKHOAN WHERE TENTAIKHOAN = ?";
+            String sql = "SELECT MATKHAU FROM dbo.TAIKHOAN WHERE TENTAIKHOAN = ? and ";
             PreparedStatement pre = conn.prepareStatement(sql);
             pre.setString(1, username);
             ResultSet rs = pre.executeQuery();
