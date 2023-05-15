@@ -265,7 +265,15 @@ public class Quanlylophoc1 extends javax.swing.JPanel {
             new String [] {
                 "Mã Lớp", "Tên Lớp", "Mã Giảng Viên", "Mã Môn Học", "Số Lượng SV", "Ngày Bắt Đầu", "Ngày Kết Thúc"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tableClass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableClassMouseClicked(evt);

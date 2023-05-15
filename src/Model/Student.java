@@ -26,6 +26,12 @@ public class Student extends Person{
         this.maLop = maLop;
     }
 
+    public Student(String masv, String maLop, String hodem, String ten) {
+        super(hodem, ten);
+        this.masv = masv;
+        this.maLop = maLop;
+    }
+
     public Student(String masv) {
         this.masv = masv;
     }

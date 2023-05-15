@@ -219,7 +219,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Theo t&#xea;n t&#x1eeb; A-Z"/>
+                <Property name="text" type="java.lang.String" value="Theo t&#xea;n t&#x1eeb; Z-A"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbSortByNameDESC">
@@ -227,7 +227,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="theo t&#xea;n t&#x1eeb; Z-A"/>
+                <Property name="text" type="java.lang.String" value="theo t&#xea;n t&#x1eeb; A-Z"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnSort">

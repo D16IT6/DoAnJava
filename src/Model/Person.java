@@ -28,6 +28,11 @@ public class Person {
         this.quequan = quequan;
     }
 
+    public Person(String hodem, String ten) {
+        this.hodem = hodem;
+        this.ten = ten;
+    }
+
     public String getHodem() {
         return hodem;
     }

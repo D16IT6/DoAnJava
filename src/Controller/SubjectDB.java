@@ -85,7 +85,7 @@ public class SubjectDB implements IDataDB<Subject> {
                 JOptionPane.showMessageDialog(null,"Xóa thành công" +sub);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(SubjectDB.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Môn học đã có trong lớp học phần" );           
         }
     }
 

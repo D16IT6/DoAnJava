@@ -92,15 +92,12 @@ public class StudentDB implements IDataDB<Student> {
     @Override
     public void set(Student t) {
         try {
-            String sql ="UPDATE SINHVIEN SET HODEM=?,TEN=?,NGAYSINH=?,QUEQUAN=?,EMAIL=?,MALOP=? WHERE MASV=?";
+            String sql ="UPDATE SINHVIEN SET HODEM=?,TEN=?,MALOP=? WHERE MASV=?";
             PreparedStatement ps =conn.prepareStatement(sql);
             ps.setString(1, t.getHodem());
-            ps.setString(2, t.getTen());
-            ps.setString(3, t.getNgaysinh());
-            ps.setString(4, t.getQuequan());
-            ps.setString(5, t.getEmail());
-            ps.setString(6, t.getMaLop());
-            ps.setString(7, t.getMasv().replaceAll(" ", ""));
+            ps.setString(2, t.getTen());           
+            ps.setString(3, t.getMaLop());
+            ps.setString(4, t.getMasv().replaceAll(" ", ""));
             ps.execute();
             JOptionPane.showMessageDialog(null, "Sửa thành công !!!!!!"+t.toString());
         } catch (Exception e) {

@@ -44,6 +44,10 @@ public class QuanLyDangKyfrm extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableLopHP = new javax.swing.JTable();
 
+        jPanel1.setBackground(new java.awt.Color(235, 253, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Danh sách đăng Ký", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+
+        tableLopHP.setBackground(new java.awt.Color(204, 255, 204));
         tableLopHP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -54,7 +58,15 @@ public class QuanLyDangKyfrm extends javax.swing.JPanel {
             new String [] {
                 "Mã Lớp HP", "Tên Lớp", "Mã Sinh Viên", "Tên Sinh Viên", "MAMH", "Tên Môn Học", "magv", "Tên Giang Viên"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tableLopHP);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

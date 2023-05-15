@@ -59,6 +59,8 @@ public class CapNhatThongTfrm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Email");
 
+        btnLuu.setBackground(new java.awt.Color(0, 0, 0));
+        btnLuu.setForeground(new java.awt.Color(255, 255, 255));
         btnLuu.setText("Lưu");
         btnLuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +68,8 @@ public class CapNhatThongTfrm extends javax.swing.JFrame {
             }
         });
 
+        btnThoat.setBackground(new java.awt.Color(0, 0, 0));
+        btnThoat.setForeground(new java.awt.Color(255, 255, 255));
         btnThoat.setText("Thoát");
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,14 +91,15 @@ public class CapNhatThongTfrm extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtQueQuan)
+                            .addComponent(txtQueQuan, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                             .addComponent(txtNgaySinh)
                             .addComponent(txtEmail)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(btnLuu)
-                        .addGap(85, 85, 85)
-                        .addComponent(btnThoat)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnThoat)
+                        .addGap(18, 18, 18)))
                 .addGap(110, 110, 110))
         );
         jPanel1Layout.setVerticalGroup(

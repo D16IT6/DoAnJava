@@ -29,7 +29,7 @@ public class Studentfrm extends javax.swing.JPanel {
     ButtonGroup rb2;
     DefaultTableModel model;
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-    
+
     public Studentfrm() {
         initComponents();
         groupRb();
@@ -38,48 +38,15 @@ public class Studentfrm extends javax.swing.JPanel {
         showClass();
         txtMasv.setEditable(false);
         search_Action();
-    }
-    
-    private void search_Action() {
-        txtSearch.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                if (!check()) {
-                    return;
-                }
-                if (txtSearch.getText().length() > 0) {
-                    trIsnert = new Thread(()
-                            -> search()
-                    );
-                    trIsnert.start();
-                }
-            }
-            
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                if (!check()) {
-                    return;
-                }
-                if (txtSearch.getText().length() > 0) {
-                    trDelete = new Thread(()
-                            -> search()
-                    );
-                    trDelete.start();
-                } else if (txtSearch.getText().length() == 0) {
-                    trDelete = new Thread(()
-                            -> showData(new StudentDB().showAll())
-                    );
-                    trDelete.start();
-                }
-            }
-            
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                
-            }
+        txtNgaySinh.setEnabled(false);
+        txtQueQuan.setEnabled(false);
+        txtEmail.setEnabled(false);
+        
+        trCheck = new Thread(() -> {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn tiêu chí tìm kiếm !!!");
         });
     }
-    
+
     private boolean check() {
         if (rbSearchByClass.isSelected() == false && rbSearchById.isSelected() == false && rbSearchByName.isSelected() == false) {
             trCheck = new Thread(() -> {
@@ -91,7 +58,47 @@ public class Studentfrm extends javax.swing.JPanel {
         }
         return true;
     }
-    
+
+    private void search_Action() {
+        txtSearch.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (!trCheck.isAlive()) {
+                    if (!check()) {
+                        return;
+                    } else if (txtSearch.getText().length() > 0) {
+                        trIsnert = new Thread(()
+                                -> search()
+                        );
+                        trIsnert.start();
+                    }
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if (trCheck.isAlive()) {
+                    return;
+                } else if (txtSearch.getText().length() > 0) {
+                    trDelete = new Thread(()
+                            -> search()
+                    );
+                    trDelete.start();
+                } else if (txtSearch.getText().length() == 0) {
+                    trDelete = new Thread(()
+                            -> showData(new StudentDB().showAll())
+                    );
+                    trDelete.start();
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
+        });
+    }
+
     private void search() {
         int check = 0;
         if (rbSearchByClass.isSelected() == true) {
@@ -193,10 +200,10 @@ public class Studentfrm extends javax.swing.JPanel {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Sắp xếp danh sách sinh viên", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
         rbSortByNameASC.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        rbSortByNameASC.setText("Theo tên từ A-Z");
+        rbSortByNameASC.setText("Theo tên từ Z-A");
 
         rbSortByNameDESC.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        rbSortByNameDESC.setText("theo tên từ Z-A");
+        rbSortByNameDESC.setText("theo tên từ A-Z");
 
         btnSort.setBackground(new java.awt.Color(51, 51, 51));
         btnSort.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -554,7 +561,7 @@ public class Studentfrm extends javax.swing.JPanel {
         rb2.add(rbSearchById);
         rb2.add(rbSearchByName);
     }
-    
+
     private void deleteDataTable() {
         if (tbStudent.getRowCount() > 0) {
             for (int i = tbStudent.getRowCount() - 1; i >= 0; i--) {
@@ -563,7 +570,7 @@ public class Studentfrm extends javax.swing.JPanel {
             }
         }
     }
-    
+
     private void showData(List<Student> list) {
         deleteDataTable();
         for (Student st : list) {
@@ -572,19 +579,16 @@ public class Studentfrm extends javax.swing.JPanel {
             });
         }
     }
-    
+
     private Student getStudent() {
         String maSV = txtMasv.getText();
         String hoDem = txtHoDem.getText();
-        String ten = txtTen.getText();
-        String ngaySinh = txtNgaySinh.getText();
-        String queQuan = txtQueQuan.getText();
-        String Email = txtEmail.getText();
+        String ten = txtTen.getText();      
         String maLop = cbClass.getSelectedItem() + "";
-        Student sv = new Student(maSV, maLop, hoDem, ten, ngaySinh, Email, queQuan);
+        Student sv = new Student(maSV, maLop, hoDem, ten);
         return sv;
     }
-    
+
     private void showClass() {
         List<String> arrClass = new StudentDB().ShowAllClass();
         for (String lop : arrClass) {
