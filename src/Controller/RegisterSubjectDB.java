@@ -147,6 +147,23 @@ public class RegisterSubjectDB {
         }
         return sv;
     }
+    public void capnhatttcanhan(Student sv){
+        String sql ="UPDATE SINHVIEN SET NGAYSINH=? ,QUEQUAN=?,EMAIL=? WHERE MASV=?";
+        PreparedStatement pr;
+        try {
+            pr = conn.prepareStatement(sql);
+            pr.setString(1,sv.getNgaysinh());
+            pr.setString(2, sv.getQuequan());
+            pr.setString(3, sv.getEmail());
+            pr.setString(4, IDStudent);
+            int res =pr.executeUpdate();
+            if(res==1)             
+            JOptionPane.showMessageDialog(null, "Cập nhật thành công !!!!!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterSubjectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 //    public static void main(String[] args) {
 //        List<LopHP> arra=new RegisterSubjectDB().showAllLOPHP();
 //        for(LopHP a:arra){

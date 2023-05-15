@@ -258,7 +258,7 @@ public class loginFrm extends javax.swing.JFrame {
             check=2;
         }
         AccountInDB aid = new AccountInDB();
-        boolean ketqua = aid.loginUsingHash(accountname, password);
+        boolean ketqua = aid.CheckLogin(accountname, password, check);
         if (accountname.equalsIgnoreCase("AcountName") || password.equalsIgnoreCase("PassWord")) {
             lbThongbao.setText("Bạn chưa nhập tên tài khoản hoặc mật khẩu");
         } else if (cbAdmin.isSelected() == false && cbSinhvien.isSelected() == false) {

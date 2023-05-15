@@ -34,7 +34,6 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
         btnPhanlophoc = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
-        btnTaoTaiKhoan = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -131,18 +130,6 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
             }
         });
 
-        btnTaoTaiKhoan.setBackground(new java.awt.Color(0, 0, 0));
-        btnTaoTaiKhoan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnTaoTaiKhoan.setForeground(new java.awt.Color(255, 255, 255));
-        btnTaoTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/class.png"))); // NOI18N
-        btnTaoTaiKhoan.setText("Tạo tài khoản");
-        btnTaoTaiKhoan.setToolTipText("");
-        btnTaoTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaoTaiKhoanActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -154,10 +141,6 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
             .addComponent(btnPhanlophoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnTaoTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,8 +154,6 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
                 .addComponent(btnQuanlydangky, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(btnPhanlophoc, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTaoTaiKhoan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -288,10 +269,6 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
         this.dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void btnTaoTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoTaiKhoanActionPerformed
-        ShowPanel(new DANGKYTAIKHOANFRM());
-    }//GEN-LAST:event_btnTaoTaiKhoanActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -315,7 +292,6 @@ public class homeFrm extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton btnQuanlydangky;
     private javax.swing.JButton btnQuanlymonhoc;
     private javax.swing.JButton btnQuanlysinhvien;
-    private javax.swing.JButton btnTaoTaiKhoan;
     private javax.swing.ButtonGroup buttonGroupSearchSubject;
     private javax.swing.ButtonGroup buttonGroupSortSubject;
     private javax.swing.JLabel jLabel4;
